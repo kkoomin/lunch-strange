@@ -1,12 +1,5 @@
-@font-face {
-  font-family: "SSM";
-  src: url("../assets/Typo_SsangmunDongB.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "NN";
-  src: url("../assets/NanumSquare.ttf") format("truetype");
-}
+@import "./variables.scss";
+@import "./Header.scss";
 
 .result-page {
   margin: 3rem;
@@ -49,26 +42,20 @@
 
 .restau-menu {
   margin: auto;
-}
 
-ul {
-  all: unset;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  justify-items: left;
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  margin: 0 auto;
-  &::after {
-    content: "";
-    border-bottom: 1px solid #333333;
+  span {
+    margin-right: 0.5rem;
   }
 }
+
+// ul {
+//   all: unset;
+//   list-style-type: none;
+//   display: flex;
+//   flex-direction: column;
+//   justify-items: left;
+// }
+
 footer {
   color: #333333;
   font-size: 0.8rem;
@@ -95,55 +82,8 @@ input {
   border-radius: 5px;
 }
 
-.logo {
-  height: 300px;
-}
-
 .filter-form {
   width: 50%;
   margin: 1rem auto;
   text-align: center;
-}
-
-.main-btn {
-  all: unset;
-  display: block;
-  width: 25rem;
-  height: 3rem;
-  background-color: transparent;
-  border: 1px solid #333333;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-family: "SSM", sans-serif;
-  letter-spacing: 0.1rem;
-  text-align: center;
-  margin: 0 auto;
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: #333333;
-    color: white;
-  }
-}
-
-.small-btn {
-  all: unset;
-  //   width: 5rem;
-  height: 2rem;
-  background-color: transparent;
-  border: 1px solid #333333;
-  border-radius: 5px;
-  font-size: 1rem;
-  //   font-family: "SSM", sans-serif;
-  //   letter-spacing: 0.1rem;
-  text-align: center;
-  margin: 0.5rem;
-  padding: 0.1rem 0.7rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #333333;
-    color: white;
-  }
 }

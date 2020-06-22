@@ -1,29 +1,27 @@
 <template>
-  <div id="app" v-if="isInputEntered">
-    <ResultPage />
-  </div>
-  <div id="app" v-else>
-    <MainPage @handleClick="handleClick" />
+  <div id="app">
+    <ResultPage v-if="isInputEntered" @handleClick="handleClick" />
+    <MainPage v-else @handleClick="handleClick" />
   </div>
 </template>
 
 <script>
-import MainPage from "./components/MainPage.vue";
-import ResultPage from "./components/ResultPage.vue";
+import MainPage from "./pages/MainPage.vue";
+import ResultPage from "./pages/ResultPage.vue";
 
 export default {
   name: "App",
   components: { MainPage, ResultPage },
   data() {
     return {
-      isInputEntered: false,
+      isInputEntered: ""
     };
   },
   methods: {
     handleClick() {
       this.isInputEntered = !this.isInputEntered;
-    },
-  },
+    }
+  }
 };
 </script>
 

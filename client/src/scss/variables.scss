@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "SSM";
+  src: url("../assets/Typo_SsangmunDongB.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NN";
+  src: url("../assets/NanumSquare.ttf") format("truetype");
+}
+
+$black: #2f2f2f;
+$orange: #ec8037;
+$ivory: #f3f3f3;
+
+.main-btn {
+  all: unset;
+  display: block;
+  width: 25rem;
+  height: 3rem;
+  background-color: transparent;
+  border: 1px solid $black;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: "SSM", sans-serif;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  margin: 0 auto;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: $black;
+    color: white;
+  }
+}
+
+.small-btn {
+  all: unset;
+  //   width: 5rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 1px solid $black;
+  border-radius: 5px;
+  font-size: 1rem;
+  //   font-family: "SSM", sans-serif;
+  //   letter-spacing: 0.1rem;
+  text-align: center;
+  margin: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $black;
+    color: white;
+  }
+}

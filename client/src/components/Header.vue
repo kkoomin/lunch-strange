@@ -1,14 +1,24 @@
 <template>
   <header class="header">
-    <img class="logo" alt="Lunch Strange Logo" src="../assets/logo.png" />
-    <!-- <h1>오늘은 뭐 먹지?</h1> -->
+    <div class="logo">
+      <img class="logo" alt="Lunch Strange Logo" src="../assets/logo3.png" />
+    </div>
+
+    <nav class="nav">
+      <ul>
+        <li>About Us</li>
+        <li>점심 부페</li>
+        <li>편의점 추천 조합</li>
+        <li>로그인</li>
+      </ul>
+    </nav>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
-  props: {},
+  props: {}
 };
 </script>
 

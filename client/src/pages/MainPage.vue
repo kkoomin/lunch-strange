@@ -15,10 +15,10 @@ export default {
   name: "MainPage",
   components: { Header, FilterForm, Footer },
   methods: {
-    handleClick() {
-      this.$emit("handleClick");
-    },
-  },
+    handleClick(value) {
+      this.$emit("handleClick", value);
+    }
+  }
 };
 </script>
 

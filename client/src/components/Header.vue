@@ -7,8 +7,8 @@
     <nav class="nav">
       <ul>
         <li>About Us</li>
-        <li>점심 부페</li>
-        <li>편의점 추천 조합</li>
+        <li>부페</li>
+        <li>편의점</li>
         <li>로그인</li>
       </ul>
     </nav>

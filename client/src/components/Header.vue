@@ -4,14 +4,20 @@
       <img class="logo" alt="Lunch Strange Logo" src="../assets/logo3.png" />
     </div>
 
-    <nav class="nav">
+    <nav id="nav">
+      <router-link to="/">About Us</router-link> |
+      <router-link to="/result">오늘의 메뉴</router-link> |
+      <router-link to="/result">편의점 조합</router-link> |
+      <router-link to="/result">로그인</router-link>
+    </nav>
+    <!-- <nav class="nav">
       <ul>
         <li>About Us</li>
         <li>오늘의 메뉴</li>
         <li>편의점 조합</li>
         <li>로그인</li>
       </ul>
-    </nav>
+    </nav> -->
   </header>
 </template>
 

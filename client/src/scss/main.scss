@@ -1,7 +1,8 @@
 @import "./variables.scss";
 @import "./Header.scss";
-html {
-  background-color: white;
+
+a {
+  all: unset;
 }
 
 .result-page {
@@ -50,14 +51,6 @@ html {
     margin-right: 0.5rem;
   }
 }
-
-// ul {
-//   all: unset;
-//   list-style-type: none;
-//   display: flex;
-//   flex-direction: column;
-//   justify-items: left;
-// }
 
 footer {
   color: #333333;

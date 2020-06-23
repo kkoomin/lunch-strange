@@ -4,7 +4,9 @@
       <h1>오늘은 여기 어때?</h1>
       <div class="filter-result">
         <span>| 8000원 | 1km 이내 | 한식 |</span>
-        <button class="small-btn" @click.prevent="$emit('handleClick')">필터 재설정</button>
+        <router-link to="/">
+          <button class="small-btn">필터 재설정</button>
+        </router-link>
       </div>
     </header>
     <article
@@ -24,7 +26,10 @@ import Footer from "../components/Footer";
 
 export default {
   name: "ResultPage",
-  components: { RestauResult, Footer }
+  components: { RestauResult, Footer },
+  methods: {
+    handleClick() {}
+  }
 };
 </script>
 

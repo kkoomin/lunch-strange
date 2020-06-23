@@ -10,6 +10,25 @@
     display: inline-block;
     align-self: flex-end;
     text-align: right;
+    margin-bottom: 0.5rem;
+
+    a {
+      all: unset;
+      display: inline-block;
+      margin: 0 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-image: linear-gradient(to right, $orange, $orange);
+        background-position: bottom left;
+        background-repeat: no-repeat;
+        background-size: 100% 3px;
+      }
+
+      &:visited {
+        color: inherit;
+      }
+    }
 
     ul {
       li {

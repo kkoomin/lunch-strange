@@ -21,7 +21,7 @@
       </div>
       <!-- Map -->
       <div>
-        <h1>여기는 맵이 들어올것</h1>
+        <Map />
       </div>
     </article>
 
@@ -31,11 +31,12 @@
 
 <script>
 import RestauResult from "../components/RestauResult";
+import Map from "../components/Map";
 import Footer from "../components/Footer";
 
 export default {
   name: "ResultPage",
-  components: { RestauResult, Footer },
+  components: { RestauResult, Footer, Map },
   methods: {},
 };
 </script>

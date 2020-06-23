@@ -7,8 +7,8 @@
     <nav class="nav">
       <ul>
         <li>About Us</li>
-        <li>부페</li>
-        <li>편의점</li>
+        <li>오늘의 메뉴</li>
+        <li>편의점 조합</li>
         <li>로그인</li>
       </ul>
     </nav>
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: "Header",
-  props: {}
+  props: {},
 };
 </script>
 

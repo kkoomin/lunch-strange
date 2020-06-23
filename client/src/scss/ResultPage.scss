@@ -1,0 +1,31 @@
+.result-page {
+  margin: 3rem;
+
+  header {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    // width: 70%;
+    border-bottom: 1px solid #333333;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 3rem;
+  }
+
+  .filter-result {
+    display: inline-block;
+    font-size: 1.1rem;
+
+    span {
+      font-weight: 500;
+      margin: 0 3rem;
+    }
+  }
+
+  .result-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

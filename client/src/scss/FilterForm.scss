@@ -1,0 +1,21 @@
+.filter-form {
+  width: 50%;
+  margin: 1rem auto;
+  text-align: center;
+
+  .checkbox {
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 0 3px;
+    border: none;
+  }
+}
+
+.multiselect {
+  margin: 0 auto;
+  width: 31rem;
+  font-size: 1rem;
+  margin: 1rem auto;
+  padding: 0 0.5rem;
+}

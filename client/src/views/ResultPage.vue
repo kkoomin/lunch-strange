@@ -9,13 +9,22 @@
         </router-link>
       </div>
     </header>
-    <article
-      class="restau-list"
-      v-for="restau in $store.state.restaurants"
-      v-bind:key="restau.name"
-    >
-      <RestauResult :restau="restau" />
+
+    <article class="result-container">
+      <!-- List -->
+      <div class="list">
+        <RestauResult
+          v-for="restau in $store.state.restaurants"
+          v-bind:key="restau.name"
+          :restau="restau"
+        />
+      </div>
+      <!-- Map -->
+      <div>
+        <h1>여기는 맵이 들어올것</h1>
+      </div>
     </article>
+
     <Footer />
   </section>
 </template>
@@ -27,9 +36,7 @@ import Footer from "../components/Footer";
 export default {
   name: "ResultPage",
   components: { RestauResult, Footer },
-  methods: {
-    handleClick() {}
-  }
+  methods: {},
 };
 </script>
 

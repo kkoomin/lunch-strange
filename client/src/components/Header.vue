@@ -5,9 +5,9 @@
     </div>
 
     <nav id="nav">
-      <router-link to="/">About Us</router-link> |
-      <router-link to="/result">오늘의 메뉴</router-link> |
-      <router-link to="/result">편의점 조합</router-link> |
+      <router-link to="/">About Us</router-link>
+      <router-link to="/canteen">오늘의 구내식당 메뉴</router-link>
+      <router-link to="/result">편의점 조합</router-link>
       <router-link to="/result">로그인</router-link>
     </nav>
     <!-- <nav class="nav">

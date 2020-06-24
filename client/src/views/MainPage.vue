@@ -17,9 +17,11 @@ export default {
   methods: {
     handleClick(value) {
       this.$emit("handleClick", value);
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../scss/main.scss";
+</style>

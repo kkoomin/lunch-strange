@@ -1,0 +1,24 @@
+.about-logo {
+  display: block;
+  height: 15rem;
+  margin: 1rem auto 2rem auto;
+}
+
+.about-info {
+  div {
+    width: 40rem;
+    margin: auto;
+  }
+  //   span {
+  //     color: $orange;
+  //   }
+  h3 {
+    text-align: left;
+    padding: 0 0.5rem;
+    //   margin: 1rem auto;
+    border-bottom: 1px solid $black;
+  }
+  p {
+    text-align: left;
+  }
+}

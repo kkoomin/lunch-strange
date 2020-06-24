@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import MainPage from "../views/MainPage.vue";
 import ResultPage from "../views/ResultPage.vue";
+import AboutUsPage from "../views/AboutUsPage.vue";
 import CanteenPage from "../views/CanteenPage.vue";
 
 Vue.use(VueRouter);
@@ -16,6 +17,11 @@ const routes = [
     path: "/result",
     name: "ResultPage",
     component: ResultPage,
+  },
+  {
+    path: "/about",
+    name: "AboutUsPage",
+    component: AboutUsPage,
   },
   {
     path: "/canteen",

@@ -1,7 +1,5 @@
 <template>
   <section class="about-us-page">
-    <Header />
-
     <article class="about-header">
       <img
         class="about-logo"
@@ -40,17 +38,12 @@
         </p>
       </div>
     </article>
-
-    <Footer />
   </section>
 </template>
 
 <script>
-import Header from "../components/Header.vue";
-import Footer from "../components/Footer.vue";
 export default {
   name: "AboutUsPage",
-  components: { Header, Footer },
 };
 </script>
 

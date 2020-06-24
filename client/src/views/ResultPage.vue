@@ -1,7 +1,6 @@
 <template>
   <section class="result-page">
     <header>
-      <h1>오늘은 여기 어때?</h1>
       <div class="filter-result">
         <span>| 8000원 | 1km 이내 | 한식 |</span>
         <router-link to="/">
@@ -24,19 +23,16 @@
         <Map />
       </div>
     </article>
-
-    <Footer />
   </section>
 </template>
 
 <script>
 import RestauResult from "../components/RestauResult";
 import Map from "../components/Map";
-import Footer from "../components/Footer";
 
 export default {
   name: "ResultPage",
-  components: { RestauResult, Footer, Map },
+  components: { RestauResult, Map },
   methods: {},
 };
 </script>

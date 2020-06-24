@@ -1,3 +1,4 @@
+// Font
 @font-face {
   font-family: "SSM";
   src: url("../assets/Typo_SsangmunDongB.ttf") format("truetype");
@@ -8,9 +9,27 @@
   src: url("../assets/NanumSquare.ttf") format("truetype");
 }
 
+// Color Scheme
 $black: #2f2f2f;
 $orange: #ec8037;
 $ivory: #f3f3f3;
+
+// Media Queries
+
+// /* Extra small devices (phones, 600px and down) */
+// @media only screen and (max-width: 600px) {...}
+
+// /* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 600px) {...}
+
+// /* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) {...}
+
+// /* Large devices (laptops/desktops, 992px and up) */
+// @media only screen and (min-width: 992px) {...}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {...}
 
 // Default Set Change
 h1 {

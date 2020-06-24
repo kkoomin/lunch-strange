@@ -1,6 +1,12 @@
 <template>
   <form class="filter-form">
-    <input type="number" placeholder="💲 예산은 얼마까지?" step="500" min="0" max="1000000" />
+    <input
+      type="number"
+      placeholder="💲 예산은 얼마까지?"
+      step="500"
+      min="0"
+      max="1000000"
+    />
 
     <input type="text" placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어?" />
 
@@ -25,7 +31,7 @@
       <input class="checkbox" type="checkbox" name="buffet-incl" id />
     </label>
 
-    <button class="main-btn" @click.prevent="$emit('handleClick')">
+    <button class="main-btn" @click.prevent="handleClick">
       점심 메뉴 보여줘!
       <!-- router.push('result') -->
     </button>
@@ -33,6 +39,7 @@
 </template>
 
 <script>
+import router from "@/router";
 import Multiselect from "vue-multiselect";
 
 export default {
@@ -47,21 +54,24 @@ export default {
         { name: "중식", code: "chinese" },
         { name: "분식", code: "snack" },
         { name: "일식", code: "japanese" },
-        { name: "기타", code: "others" }
-      ]
+        { name: "기타", code: "others" },
+      ],
     };
   },
   methods: {
-    addTag(newTag) {
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
-      };
-      console.log(newTag);
-      this.options.push(tag);
-      this.value.push(tag);
-    }
-  }
+    // addTag(newTag) {
+    //   const tag = {
+    //     name: newTag,
+    //     code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+    //   };
+    //   console.log(newTag);
+    //   this.options.push(tag);
+    //   this.value.push(tag);
+    // },
+    handleClick: () => {
+      router.push("/result");
+    },
+  },
 };
 </script>
 

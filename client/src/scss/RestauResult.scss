@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1.5fr;
   //   width: 50%;
   margin: 1rem;
-  padding: 0 3rem;
+  padding: 0 1rem;
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
 
@@ -14,6 +14,10 @@
   .restau-menu {
     margin: auto;
 
+    li {
+      list-style-type: none;
+      text-align: left;
+    }
     span {
       margin-right: 0.5rem;
     }

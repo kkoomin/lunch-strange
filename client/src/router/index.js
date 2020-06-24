@@ -4,6 +4,8 @@ import MainPage from "../views/MainPage.vue";
 import ResultPage from "../views/ResultPage.vue";
 import AboutUsPage from "../views/AboutUsPage.vue";
 import CanteenPage from "../views/CanteenPage.vue";
+import CVSPage from "../views/CVSPage.vue";
+import LoginPage from "../views/LoginPage.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,16 @@ const routes = [
     path: "/canteen",
     name: "CanteenPage",
     component: CanteenPage,
+  },
+  {
+    path: "/cvs",
+    name: "CVSPage",
+    component: CVSPage,
+  },
+  {
+    path: "/user",
+    name: "LoginPage",
+    component: LoginPage,
   },
 ];
 

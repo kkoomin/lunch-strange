@@ -1,0 +1,9 @@
+.cvs-table {
+  width: 60%;
+  margin: 1rem auto;
+
+  tr {
+    display: grid;
+    grid-template-columns: 3rem 1fr 5rem 3rem 3rem;
+  }
+}

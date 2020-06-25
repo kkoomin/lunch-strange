@@ -32,6 +32,10 @@ $ivory: #f3f3f3;
 // @media only screen and (min-width: 1200px) {...}
 
 // Default Set Change
+html {
+  font-family: "NN", sans-serif;
+}
+
 h1 {
   display: inline-block;
   font-family: "SSM", sans-serif;
@@ -44,7 +48,6 @@ a {
 }
 
 input {
-  font-family: "NN", sans-serif;
   display: block;
   width: 30rem;
   height: 3rem;

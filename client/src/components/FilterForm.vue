@@ -59,15 +59,15 @@ export default {
     };
   },
   methods: {
-    // addTag(newTag) {
-    //   const tag = {
-    //     name: newTag,
-    //     code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
-    //   };
-    //   console.log(newTag);
-    //   this.options.push(tag);
-    //   this.value.push(tag);
-    // },
+    addTag(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+      };
+      console.log(newTag);
+      this.options.push(tag);
+      this.value.push(tag);
+    },
     handleClick: () => {
       router.push("/result");
     },

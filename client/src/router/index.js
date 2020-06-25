@@ -5,6 +5,8 @@ import ResultPage from "../views/ResultPage.vue";
 import AboutUsPage from "../views/AboutUsPage.vue";
 import CanteenPage from "../views/CanteenPage.vue";
 import CVSPage from "../views/CVSPage.vue";
+import CVSWritePage from "../views/CVSWritePage.vue";
+import CVSReadPage from "../views/CVSReadPage.vue";
 import LoginPage from "../views/LoginPage.vue";
 
 Vue.use(VueRouter);
@@ -34,6 +36,16 @@ const routes = [
     path: "/cvs",
     name: "CVSPage",
     component: CVSPage,
+  },
+  {
+    path: "/cvs/write",
+    name: "CVSWritePage",
+    component: CVSWritePage,
+  },
+  {
+    path: "/cvs/:id",
+    name: "CVSReadPage",
+    component: CVSReadPage,
   },
   {
     path: "/user",

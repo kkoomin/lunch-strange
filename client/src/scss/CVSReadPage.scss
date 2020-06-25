@@ -1,0 +1,27 @@
+.cvs-post {
+  width: 60%;
+  //   border: 1px solid $black;
+  margin: 1rem auto;
+  padding: 1rem;
+  min-height: 20rem;
+  border-bottom: 1px solid $black;
+  text-align: left;
+
+  &_title,
+  &_content {
+    padding: 0 1rem;
+  }
+
+  &_info {
+    background-color: $orange;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    padding: 3px 1rem;
+
+    span {
+      display: block;
+      margin: 0 0.4rem;
+    }
+  }
+}

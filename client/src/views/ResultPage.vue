@@ -13,7 +13,7 @@
       <!-- List -->
       <div class="list">
         <RestauResult
-          v-for="restau in $store.state.restaurants"
+          v-for="restau in allPlaces()"
           v-bind:key="restau.name"
           :restau="restau"
         />
@@ -29,11 +29,12 @@
 <script>
 import RestauResult from "../components/RestauResult";
 import Map from "../components/Map";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ResultPage",
   components: { RestauResult, Map },
-  methods: {},
+  methods: { ...mapGetters(["allPlaces"]) },
 };
 </script>
 

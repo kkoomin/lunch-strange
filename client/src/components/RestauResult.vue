@@ -4,8 +4,8 @@
       {{ restau.name }}
     </h2>
     <div class="restau-menu">
-      <ul>
-        <li v-for="menu in restau.menu" v-bind:key="menu.name">
+      <ul v-for="menu in restau.menu" v-bind:key="menu.name">
+        <li>
           <span>{{ menu.name }}</span>
           <span>{{ menu.price }}</span>
         </li>

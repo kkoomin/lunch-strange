@@ -1,0 +1,13 @@
+.canteen-table {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+.canteen-list {
+  width: 60%;
+  margin: 3rem auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, [col-start] 15rem [col-end]);
+}

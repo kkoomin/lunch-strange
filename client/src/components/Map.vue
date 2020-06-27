@@ -31,4 +31,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../scss/Map.scss";
+</style>

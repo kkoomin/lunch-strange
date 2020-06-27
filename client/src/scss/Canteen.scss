@@ -1,7 +1,36 @@
 .canteen {
   width: 14rem;
-  height: 14rem;
+  // height: 14rem;
   margin: 1rem;
   //   border: 1px solid $black;
   box-shadow: 2px 3px 5px #acaaaa;
+
+  figure {
+    margin: 0;
+    display: block;
+    width: inherit;
+    height: 9rem;
+    overflow: hidden;
+
+    img {
+      width: inherit;
+      overflow: hidden;
+    }
+  }
+}
+
+.canteen-info {
+  padding: 0 1rem;
+  text-align: left;
+  span {
+    font-size: 0.9rem;
+  }
+  h3 {
+    margin: 1rem;
+    text-align: center;
+  }
+  .canteen-price {
+    display: block;
+    font-size: 1rem;
+  }
 }

@@ -14,16 +14,8 @@
         placeholder="글 내용을 입력해주세요."
         required
       />
-      <input
-        v-model="password"
-        type="password"
-        placeholder="비밀번호"
-        maxlength="8"
-        required
-      />
       <button class="main-btn">글쓰기</button>
     </form>
-    {{ title }}
   </section>
 </template>
 
@@ -34,12 +26,11 @@ export default {
     return {
       title: "",
       content: "",
-      password: "",
     };
   },
   methods: {
     handleSubmit() {
-      console.log(this.title + this.content + this.password);
+      console.log(this.title + this.content);
     },
   },
 };

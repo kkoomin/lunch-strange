@@ -6,40 +6,51 @@
       step="500"
       min="0"
       max="1000000"
+      v-model="price"
     />
 
-    <input type="text" placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어?" />
+    <input
+      type="text"
+      placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어?"
+      v-model="distance"
+    />
 
     <!-- Tagging multi select -->
     <div>
       <multiselect
-        v-model="value"
-        tag-placeholder="Add this as new tag"
+        v-model="category"
         placeholder="🍙 한식? 중식? 양식?"
         label="name"
         track-by="code"
         :options="options"
         :multiple="true"
-        :taggable="true"
-        @tag="addTag"
       ></multiselect>
-      <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+      <!-- <pre class="language-json"><code>{{ category  }}</code></pre> -->
     </div>
 
     <label for="buffet-incl">
       점심 부페 포함
-      <input class="checkbox" type="checkbox" name="buffet-incl" id />
+      <input
+        class="checkbox"
+        type="checkbox"
+        name="buffet-incl"
+        :checked="checked"
+        @input="checked = $event.target.checked"
+      />
     </label>
 
     <button class="main-btn" @click.prevent="handleClick">
       점심 메뉴 보여줘!
-      <!-- router.push('result') -->
     </button>
+    {{ price }}
+    {{ distance }}
+    {{ category }}
+    {{ checked }}
   </form>
 </template>
 
 <script>
-import router from "@/router";
+// import router from "@/router";
 import Multiselect from "vue-multiselect";
 
 export default {
@@ -47,29 +58,23 @@ export default {
   components: { Multiselect },
   data() {
     return {
-      value: [],
+      price: null,
+      distance: null,
+      category: [],
+      checked: false,
       options: [
-        { name: "한식", code: "korean" },
-        { name: "양식", code: "western" },
-        { name: "중식", code: "chinese" },
-        { name: "분식", code: "snack" },
-        { name: "일식", code: "japanese" },
-        { name: "기타", code: "others" },
+        { name: "한식", code: "한식" },
+        { name: "양식", code: "양식" },
+        { name: "중식", code: "중식" },
+        { name: "분식", code: "분식" },
+        { name: "일식", code: "일식" },
+        { name: "기타", code: "기타" },
       ],
     };
   },
   methods: {
-    addTag(newTag) {
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
-      };
-      console.log(newTag);
-      this.options.push(tag);
-      this.value.push(tag);
-    },
-    handleClick: () => {
-      router.push("/result");
+    handleClick() {
+      // router.push("/result");
     },
   },
 };

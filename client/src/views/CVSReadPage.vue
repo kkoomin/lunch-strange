@@ -11,6 +11,7 @@
       </div>
       <p class="cvs-post_content">{{ post.content }}</p>
     </article>
+    <button class="small-btn" @click="handleListClick">목록</button>
     <button class="small-btn">👍</button>
     <button class="small-btn">수정</button>
     <button class="small-btn">삭제</button>
@@ -18,12 +19,19 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "CVSReadPage",
   data() {
     return {
       post: null,
     };
+  },
+  methods: {
+    handleListClick() {
+      router.push("/cvs");
+    },
   },
   created() {
     const id = location.href.split("/").reverse()[0];

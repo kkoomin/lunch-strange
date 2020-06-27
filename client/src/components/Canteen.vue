@@ -1,16 +1,35 @@
 <template>
   <article class="canteen">
-    <h3 class="canteen-name">{{ name }}</h3>
-    <h5 class="canteen-price">{{ price }}</h5>
-    <h5 class="canteen-location">{{ location }}</h5>
-    <button class="small-btn">식단표 보기</button>
+    <figure>
+      <img src="@/assets/nolang-thumbnail.png" alt="canteen-image" />
+    </figure>
+    <div class="canteen-info">
+      <h3 class="canteen-name">{{ place.name }}</h3>
+      <span class="canteen-location">🏠{{ place.location }}</span>
+      <span class="canteen-type">🍴{{ place.type }}</span>
+      <span class="canteen-price">💰{{ place.price }}</span>
+    </div>
+    <button class="small-btn" @click="handleMenuClick()">식단표 보기</button>
+    <!-- 식단표 모달 -->
+    <Modal v-if="isModalOpened" @toggleModal="handleMenuClick" @id="place.id" />
   </article>
 </template>
 
 <script>
+import Modal from "@/components/Modal";
+
 export default {
   name: "Canteen",
-  props: ["name", "price", "location"],
+  props: ["place"],
+  components: { Modal },
+  data() {
+    return { isModalOpened: false, modalStatus: "close" };
+  },
+  methods: {
+    handleMenuClick() {
+      this.isModalOpened = !this.isModalOpened;
+    },
+  },
 };
 </script>
 

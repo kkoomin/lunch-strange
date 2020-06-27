@@ -1,18 +1,12 @@
 <template>
   <section class="canteen-page">
-    <h1>구내식당 메뉴</h1>
+    <h1>구내식당 / 점심뷔페 메뉴</h1>
 
     <article class="canteen-list">
-      <Canteen
-        v-for="place in places"
-        v-bind:key="place.id"
-        :name="place.name"
-        :price="place.price"
-        :location="place.location"
-      />
+      <Canteen v-for="place in places" v-bind:key="place.id" :place="place" />
     </article>
 
-    <button class="main-btn">구내식당 등록하기</button>
+    <button class="canteen-register-btn">구내식당 등록 문의</button>
   </section>
 </template>
 
@@ -25,14 +19,62 @@ export default {
   data() {
     return {
       places: [
-        { id: "1", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "2", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "3", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "4", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "5", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "6", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "7", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
-        { id: "8", name: "GS타워 아워홈", price: "5,500원", location: "역삼" },
+        {
+          id: "1",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "2",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "3",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "4",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "5",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "6",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "7",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
+        {
+          id: "8",
+          name: "노랑통닭",
+          price: "5,000원",
+          location: "역삼역",
+          type: "점심뷔페",
+        },
       ],
     };
   },

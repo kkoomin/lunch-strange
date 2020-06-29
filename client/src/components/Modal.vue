@@ -1,7 +1,7 @@
 <template>
-  <div class="modal" :class="modalStatus" @click.self="$emit('toggleModal')">
+  <div class="modal" @click.self="$emit('toggleModal')">
     <div class="modal-content">
-      <img class="menu-image" src="@/assets/nolang.jpg" alt="menu image" />
+      <img class="menu-image" :src="img" alt="menu image" />
       <button class="modal-close-btn" @click="$emit('toggleModal')">❌</button>
     </div>
   </div>
@@ -10,7 +10,7 @@
 <script>
 export default {
   name: "Modal",
-  props: ["modalStatus"],
+  props: ["img"],
 };
 </script>
 

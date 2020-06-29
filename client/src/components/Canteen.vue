@@ -3,7 +3,7 @@
     <div class="canteen-wrapper">
       <div class="canteen-front">
         <figure>
-          <img src="@/assets/nolang-thumbnail.png" alt="canteen-image" />
+          <img :src="place.thumbnail" alt="canteen-image" />
         </figure>
         <div class="canteen-info">
           <h3 class="canteen-name">{{ place.name }}</h3>
@@ -21,7 +21,11 @@
     </div>
 
     <!-- 식단표 모달 -->
-    <Modal v-if="isModalOpened" @toggleModal="handleMenuClick" @id="place.id" />
+    <Modal
+      v-if="isModalOpened"
+      @toggleModal="handleMenuClick"
+      :img="place.img"
+    />
   </article>
 </template>
 

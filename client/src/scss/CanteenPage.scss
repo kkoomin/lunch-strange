@@ -13,18 +13,5 @@
 }
 
 .canteen-register-btn {
-  all: unset;
-  cursor: pointer;
-  display: block;
-
-  height: 3rem;
-  font-size: 1rem;
-  text-align: center;
-  margin: 0 auto;
   color: $orange;
-
-  &:hover {
-    transform: scale(1.02);
-    // text-shadow: 1px 1px 1px lightgrey;
-  }
 }

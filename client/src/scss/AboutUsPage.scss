@@ -5,13 +5,13 @@
 }
 
 .about-info {
-  div {
+  &__service-desc,
+  &__feature-desc,
+  &__contact-us {
     width: 50%;
     margin: auto;
   }
-  //   span {
-  //     color: $orange;
-  //   }
+
   h3 {
     text-align: left;
     padding: 0 0.5rem;
@@ -20,5 +20,12 @@
   }
   p {
     text-align: left;
+  }
+
+  .contact-form {
+    // width: 80%;
+    margin: 1rem;
+    padding: 1rem;
+    // box-shadow: 2px 2px 2px #acaaaa;
   }
 }

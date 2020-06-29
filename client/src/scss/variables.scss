@@ -81,7 +81,7 @@ table {
   font-family: "SSM", sans-serif;
   letter-spacing: 0.1rem;
   text-align: center;
-  margin: 0 auto;
+  margin: 0.5rem auto;
 
   cursor: pointer;
 
@@ -93,14 +93,11 @@ table {
 
 .small-btn {
   all: unset;
-  //   width: 5rem;
   height: 2rem;
   background-color: transparent;
   border: 1px solid $black;
   border-radius: 5px;
   font-size: 1rem;
-  //   font-family: "SSM", sans-serif;
-  //   letter-spacing: 0.1rem;
   text-align: center;
   margin: 0.5rem;
   padding: 0.1rem 0.7rem;
@@ -109,5 +106,23 @@ table {
   &:hover {
     background-color: $black;
     color: white;
+  }
+}
+
+.inform-btn {
+  all: unset;
+  cursor: pointer;
+  display: block;
+
+  height: 3rem;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0 auto;
+  color: $orange;
+
+  &:hover {
+    transform: scale(1.02);
+    // text-shadow: 1px 1px 1px lightgrey;
   }
 }

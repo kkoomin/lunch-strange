@@ -6,26 +6,33 @@
       step="500"
       min="0"
       max="1000000"
+      required
       v-model="price"
     />
 
     <input
-      type="text"
-      placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어?"
+      type="number"
+      step="50"
+      min="0"
+      max="1000"
+      required
+      placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어? (ex. 500m → 500으로 입력)"
       v-model="distance"
     />
 
     <!-- Tagging multi select -->
     <div>
       <multiselect
+        class="multiselect"
         v-model="category"
         placeholder="🍙 한식? 중식? 양식?"
         label="name"
-        track-by="code"
+        track-by="value"
+        required
         :options="options"
         :multiple="true"
       ></multiselect>
-      <!-- <pre class="language-json"><code>{{ category  }}</code></pre> -->
+      <!-- <pre class="language-json"><value>{{ category  }}</value></pre> -->
     </div>
 
     <label for="buffet-incl">
@@ -63,12 +70,12 @@ export default {
       category: [],
       checked: false,
       options: [
-        { name: "한식", code: "한식" },
-        { name: "양식", code: "양식" },
-        { name: "중식", code: "중식" },
-        { name: "분식", code: "분식" },
-        { name: "일식", code: "일식" },
-        { name: "기타", code: "기타" },
+        { name: "한식", value: "한식" },
+        { name: "양식", value: "양식" },
+        { name: "중식", value: "중식" },
+        { name: "분식", value: "분식" },
+        { name: "일식", value: "일식" },
+        { name: "기타", value: "기타" },
       ],
     };
   },
@@ -83,5 +90,5 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style lang="scss">
-@import "../scss/main.scss";
+@import "../scss/FilterForm.scss";
 </style>

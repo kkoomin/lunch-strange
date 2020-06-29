@@ -4,6 +4,7 @@ import MainPage from "../views/MainPage.vue";
 import ResultPage from "../views/ResultPage.vue";
 import AboutUsPage from "../views/AboutUsPage.vue";
 import CanteenPage from "../views/CanteenPage.vue";
+import CanteenSupportPage from "../views/CanteenSupportPage.vue";
 import CVSPage from "../views/CVSPage.vue";
 import CVSWritePage from "../views/CVSWritePage.vue";
 import CVSReadPage from "../views/CVSReadPage.vue";
@@ -31,6 +32,11 @@ const routes = [
     path: "/canteen",
     name: "CanteenPage",
     component: CanteenPage,
+  },
+  {
+    path: "/canteen/support",
+    name: "CanteenSupportPage",
+    component: CanteenSupportPage,
   },
   {
     path: "/cvs",

@@ -14,7 +14,7 @@
         placeholder="글 내용을 입력해주세요."
         required
       />
-      <button class="main-btn">글쓰기</button>
+      <button class="main-btn">✏️ 작성완료</button>
     </form>
   </section>
 </template>

@@ -15,8 +15,8 @@
         <p>
           Lunch Strange는 "오늘은 뭐 먹지?" 하는 일상의 고민을 해결하는
           서비스입니다. <br />서울 시내 주요 직장가의 높은 점심값이 언제나
-          걱정인 직장인들, 학생들을 위해 합리적인 가격으로 점심을 해결할 수 있는
-          식당들을 소개합니다.
+          걱정인 직장인들과 학생들을 위해 합리적인 가격으로 점심을 해결할 수
+          있는 식당들을 소개합니다.
         </p>
       </div>
       <div class="about-info__feature-desc">
@@ -36,14 +36,21 @@
         <p>
           @kkoomin, @EomJaeWoong
         </p>
+        <div class="contact-form">
+          <h1>Contact Form</h1>
+          <Support />
+        </div>
       </div>
     </article>
   </section>
 </template>
 
 <script>
+import Support from "../components/Support.vue";
+
 export default {
   name: "AboutUsPage",
+  components: { Support },
 };
 </script>
 

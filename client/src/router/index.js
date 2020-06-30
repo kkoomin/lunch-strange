@@ -9,6 +9,7 @@ import CVSPage from "../views/CVSPage.vue";
 import CVSWritePage from "../views/CVSWritePage.vue";
 import CVSReadPage from "../views/CVSReadPage.vue";
 import LoginPage from "../views/LoginPage.vue";
+import KakaoAuth from "../views/KakaoAuth.vue";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,11 @@ const routes = [
     path: "/user",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/auth",
+    name: "KakaoAuth",
+    component: KakaoAuth,
   },
 ];
 

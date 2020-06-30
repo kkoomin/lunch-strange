@@ -19,20 +19,27 @@
 </template>
 
 <script>
-export default {
+import axios from "axios";
 
-  import axios from "axios";
+export default {
   name: "LoginPage",
   methods: {
     kakaoLogin: () => {
       const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
-      const redirect_uri = "http://70.12.224.218:8000/login";
-      location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_app_key}&redirect_uri=${redirect_uri}&response_type=code`;
+      const redirect_uri = process.env.VUE_APP_SERVER_URL;
+      const fullUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_app_key}&redirect_uri=${redirect_uri}&response_type=code`;
+
+      const popup = window.open(fullUrl, "PopupWin", "width=500,height=600");
+      popup.close();
+
+      axios
+        .post("http://70.12.224.218:8000/auth2", {})
+        .then((res) => console.log(res));
     },
   },
 };
 </script>
-
+//
 <style lang="scss">
 @import "../scss/LoginPage.scss";
 </style>

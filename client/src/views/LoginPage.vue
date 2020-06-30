@@ -20,11 +20,13 @@
 
 <script>
 export default {
+
+  import axios from "axios";
   name: "LoginPage",
   methods: {
     kakaoLogin: () => {
       const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
-      const redirect_uri = "http://localhost:8080/";
+      const redirect_uri = "http://70.12.224.218:8000/login";
       location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_app_key}&redirect_uri=${redirect_uri}&response_type=code`;
     },
   },

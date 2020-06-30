@@ -9,7 +9,7 @@
         class="kakao-login-btn"
         src="@/assets/kakao_login_large_wide.png"
         alt="Kakao login button"
-        @click="kakaoLogin"
+        @click="login"
       />
       <p class="login-info">
         Lunch Strange는 고객의 편의를 위해 카카오 로그인을 지원합니다.
@@ -19,24 +19,11 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "LoginPage",
-  methods: {
-    kakaoLogin: () => {
-      const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
-      const redirect_uri = process.env.VUE_APP_SERVER_URL;
-      const fullUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_app_key}&redirect_uri=${redirect_uri}&response_type=code`;
-
-      const popup = window.open(fullUrl, "PopupWin", "width=500,height=600");
-      popup.close();
-
-      axios
-        .post("http://70.12.224.218:8000/auth2", {})
-        .then((res) => console.log(res));
-    },
-  },
+  methods: { ...mapActions(["login"]) },
 };
 </script>
 //

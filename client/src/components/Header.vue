@@ -12,15 +12,22 @@
       <router-link to="/">필터링 검색</router-link>
       <router-link to="/canteen">오늘의 메뉴</router-link>
       <router-link to="/cvs">편의점 조합</router-link>
-      <router-link to="/user">로그인</router-link>
+      <router-link to="/user" v-if="!isLoggedIn">로그인</router-link>
+      <a v-else @click="logout">로그아웃</a>
     </nav>
   </header>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Header",
-  props: {},
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
+  methods: {
+    ...mapActions(["logout"]),
+  },
 };
 </script>
 

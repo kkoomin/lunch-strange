@@ -1,5 +1,6 @@
 <template>
   <form class="filter-form">
+    <h1>오늘은 뭘 먹을까?</h1>
     <input
       type="number"
       placeholder="💲 예산은 얼마까지?"
@@ -90,5 +91,5 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style lang="scss">
-@import "../scss/FilterForm.scss";
+@import "../scss/main.scss";
 </style>

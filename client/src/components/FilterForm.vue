@@ -37,7 +37,6 @@
     </div>
 
     <label for="buffet-incl">
-      점심 부페 포함
       <input
         class="checkbox"
         type="checkbox"
@@ -45,20 +44,21 @@
         :checked="checked"
         @input="checked = $event.target.checked"
       />
+      점심 부페 포함
     </label>
 
     <button class="main-btn" @click.prevent="handleClick">
       점심 메뉴 보여줘!
     </button>
-    {{ price }}
+    <!-- {{ price }}
     {{ distance }}
     {{ category }}
-    {{ checked }}
+    {{ checked }} -->
   </form>
 </template>
 
 <script>
-// import router from "@/router";
+import router from "@/router";
 import Multiselect from "vue-multiselect";
 
 export default {
@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     handleClick() {
-      // router.push("/result");
+      router.push("/result");
     },
   },
 };

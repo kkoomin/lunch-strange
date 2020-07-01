@@ -50,22 +50,25 @@
     <button class="main-btn" @click.prevent="handleClick">
       점심 메뉴 보여줘!
     </button>
-    <!-- {{ price }}
+    {{ getFilteredPlaces }}
+    {{ price }}
     {{ distance }}
     {{ category }}
-    {{ checked }} -->
+    {{ checked }}
   </form>
 </template>
 
 <script>
-import router from "@/router";
+// import router from "@/router";
 import Multiselect from "vue-multiselect";
+import gql from "graphql-tag";
 
 export default {
   name: "FilterForm",
   components: { Multiselect },
   data() {
     return {
+      skipQuery: true,
       price: null,
       distance: null,
       category: [],
@@ -80,9 +83,44 @@ export default {
       ],
     };
   },
+  apollo: {
+    getFilteredPlaces: {
+      query: gql`
+        query SendFilter(
+          $category: [String!]
+          $price: String
+          $distance: String
+          $checked: Boolean
+        ) {
+          getFilteredPlaces(
+            category: $category
+            price: $price
+            distance: $distance
+            checked: $checked
+          )
+        }
+      `,
+      variables() {
+        const category = [];
+        this.category.forEach((el) => category.push(el.value));
+
+        return {
+          category: category,
+          price: this.price,
+          distance: this.distance,
+          checked: this.checked,
+        };
+      },
+      skip() {
+        return this.skipQuery;
+      },
+    },
+  },
   methods: {
     handleClick() {
-      router.push("/result");
+      console.log("clicked!");
+      this.$apollo.queries.getFilteredPlaces.skip = false;
+      this.$apollo.queries.getFilteredPlaces.refetch();
     },
   },
 };

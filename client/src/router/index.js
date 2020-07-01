@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import MainPage from "../views/MainPage.vue";
 import ResultPage from "../views/ResultPage.vue";
+import PlacePage from "../views/PlacePage.vue";
 import AboutUsPage from "../views/AboutUsPage.vue";
 import CanteenPage from "../views/CanteenPage.vue";
 import CanteenSupportPage from "../views/CanteenSupportPage.vue";
@@ -9,6 +10,7 @@ import CVSPage from "../views/CVSPage.vue";
 import CVSWritePage from "../views/CVSWritePage.vue";
 import CVSReadPage from "../views/CVSReadPage.vue";
 import LoginPage from "../views/LoginPage.vue";
+import KakaoAuth from "../views/KakaoAuth.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +24,11 @@ const routes = [
     path: "/result",
     name: "ResultPage",
     component: ResultPage,
+  },
+  {
+    path: "/place/:id",
+    name: "PlacePage",
+    component: PlacePage,
   },
   {
     path: "/about",
@@ -57,6 +64,11 @@ const routes = [
     path: "/user",
     name: "LoginPage",
     component: LoginPage,
+  },
+  {
+    path: "/auth",
+    name: "KakaoAuth",
+    component: KakaoAuth,
   },
 ];
 

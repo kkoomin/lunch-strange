@@ -12,10 +12,10 @@
     <article class="result-container">
       <!-- List -->
       <div class="list">
-        <RestauResult
-          v-for="restau in allPlaces()"
-          v-bind:key="restau.name"
-          :restau="restau"
+        <placeResult
+          v-for="place in allPlaces()"
+          v-bind:key="place.name"
+          :place="place"
         />
       </div>
       <!-- Map -->
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import RestauResult from "../components/RestauResult";
+import PlaceResult from "../components/PlaceResult";
 import Map from "../components/Map";
 import { mapGetters } from "vuex";
 
 export default {
   name: "ResultPage",
-  components: { RestauResult, Map },
+  components: { PlaceResult, Map },
   methods: { ...mapGetters(["allPlaces"]) },
 };
 </script>

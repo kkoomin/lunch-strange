@@ -1,4 +1,4 @@
-.restau-result {
+.place-result {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   //   width: 50%;
@@ -7,11 +7,11 @@
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
 
-  .restau-name {
+  .place-name {
     margin: auto;
   }
 
-  .restau-menu {
+  .place-menu {
     margin: auto;
 
     li {

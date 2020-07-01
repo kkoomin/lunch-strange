@@ -1,6 +1,7 @@
 const state = {
   places: [
     {
+      id: 1,
       name: "킹콩 생고기",
       menu: [
         { name: "제육쌈밥", price: "8,000원" },
@@ -9,6 +10,7 @@ const state = {
       ],
     },
     {
+      id: 2,
       name: "소풍",
       menu: [
         { name: "라돈", price: "7,000원" },
@@ -17,6 +19,7 @@ const state = {
       ],
     },
     {
+      id: 3,
       name: "양자강",
       menu: [
         { name: "짜장", price: "6,000원" },
@@ -25,6 +28,7 @@ const state = {
       ],
     },
     {
+      id: 4,
       name: "노랑통닭",
       menu: [{ name: "점심부페", price: "6,000원" }],
     },

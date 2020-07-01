@@ -8,6 +8,11 @@ const getters = { isLoggedIn: (state) => !!state.token };
 const mutations = { setToken: (state, token) => (state.token = token) };
 const actions = {
   logout: ({ commit }) => {
+    // const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
+    // const redirect_uri = "http://localhost:8080/";
+    // const fullUrl = `https://kauth.kakao.com/oauth/logout?client_id=${kakao_app_key}?&logout_redirect_uri=${redirect_uri}`;
+    // window.open(fullUrl);
+
     commit("setToken", null);
     location.pathname = "/";
   },

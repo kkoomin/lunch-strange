@@ -1,7 +1,0 @@
-const SendFilter = gql`
-  query SendFilter($filter: String!) {
-    getFilteredPlaces(filter: $filter)
-  }
-`
-
-export default {SendFilter}

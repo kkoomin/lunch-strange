@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import MainPage from "../views/MainPage.vue";
 import ResultPage from "../views/ResultPage.vue";
 import PlacePage from "../views/PlacePage.vue";
-import AboutUsPage from "../views/AboutUsPage.vue";
 import CanteenPage from "../views/CanteenPage.vue";
 import CanteenSupportPage from "../views/CanteenSupportPage.vue";
 import CVSPage from "../views/CVSPage.vue";
@@ -29,11 +28,6 @@ const routes = [
     path: "/place/:id",
     name: "PlacePage",
     component: PlacePage,
-  },
-  {
-    path: "/about",
-    name: "AboutUsPage",
-    component: AboutUsPage,
   },
   {
     path: "/canteen",

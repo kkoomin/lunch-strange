@@ -1,3 +1,7 @@
+.filter-from-wrapper {
+  margin-top: 4rem;
+}
+
 .form-container {
   width: 70%;
   margin: 0 auto;
@@ -145,6 +149,7 @@
     100% 0
   );
 }
+// https://stackoverflow.com/questions/13774952/making-jagged-triangle-border-in-css
 
 .filter-submit-btn {
   margin-top: 3rem;

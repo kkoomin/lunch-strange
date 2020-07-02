@@ -8,27 +8,21 @@
               class="form-nav__button left"
               :class="[formInputField === 'price' ? 'active' : '']"
               @click="handleFieldChange('price')"
-            >
-              예산
-            </button>
+            >예산</button>
           </li>
           <li>
             <button
               class="form-nav__button"
               :class="[formInputField === 'distance' ? 'active' : '']"
               @click="handleFieldChange('distance')"
-            >
-              거리
-            </button>
+            >거리</button>
           </li>
           <li>
             <button
               class="form-nav__button right"
               :class="[formInputField === 'category' ? 'active' : '']"
               @click="handleFieldChange('category')"
-            >
-              분류
-            </button>
+            >분류</button>
           </li>
         </ul>
       </nav>
@@ -36,7 +30,7 @@
         <input
           v-if="formInputField === 'price'"
           type="number"
-          placeholder="💲 예산은 얼마까지?"
+          placeholder="💲 점심 가격은 얼마까지?"
           step="500"
           min="0"
           max="1000000"
@@ -49,7 +43,7 @@
           type="number"
           step="50"
           min="0"
-          max="1000"
+          max="5000"
           required
           placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어? (ex. 500m → 500으로 입력)"
           v-model="distance"
@@ -80,24 +74,15 @@
       </div>
     </div>
 
-    <div
-      v-if="price || distance || category || checked"
-      class="form-input-result-container"
-    >
+    <div v-if="price || distance || category" class="form-input-result-container">
       <div class="form-input-result jagged-bottom">
-        <span v-if="price">{{ price }}원 이내로, </span>
-        <span v-if="distance">{{ distance }}m 안에서 </span>
-        <span v-if="category"
-          >{{ category.map((el) => el.value).join(", ") }} 중 하나로.</span
-        >
-        <span v-if="checked">
-          점심 부페{{ checked ? " 갈 수도 있음" : "는 패스" }}
-        </span>
+        <span v-if="price">{{ price.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") }}원 이내로,</span>
+        <span v-if="distance">{{ distance }}m 안에서,</span>
+        <span v-if="category">{{ category.map((el) => el.value).join(", ") }} 중 하나로.</span>
+        <span v-if="category">점심 부페{{ checked ? " 갈 수도 있음" : "는 패스" }}</span>
       </div>
 
-      <button class="main-btn filter-submit-btn" @click.prevent="handleSubmit">
-        오늘은 여기서 먹는다!
-      </button>
+      <button class="main-btn filter-submit-btn" @click.prevent="handleSubmit">오늘은 여기서 먹는다!</button>
     </div>
   </article>
 </template>
@@ -105,7 +90,8 @@
 <script>
 import router from "@/router";
 import Multiselect from "vue-multiselect";
-import gql from "graphql-tag";
+import { getFilteredPlaces } from "../graphql/getFilteredPlaces.js";
+import { mapActions } from "vuex";
 
 export default {
   name: "FilterForm",
@@ -114,70 +100,75 @@ export default {
     return {
       isActive: true,
       formInputField: "price",
+      getFilteredPlaces: null,
       skipQuery: true,
+      // filter input
       price: null,
       distance: null,
       category: null,
       checked: false,
+      //
       options: [
         { name: "한식", value: "한식" },
         { name: "양식", value: "양식" },
         { name: "중식", value: "중식" },
         { name: "분식", value: "분식" },
         { name: "일식", value: "일식" },
-        { name: "기타", value: "기타" },
-      ],
+        { name: "기타", value: "기타" }
+      ]
     };
   },
   apollo: {
     getFilteredPlaces: {
-      query: gql`
-        query SendFilter(
-          $category: [String!]
-          $price: String
-          $distance: String
-          $checked: Boolean
-        ) {
-          getFilteredPlaces(
-            category: $category
-            price: $price
-            distance: $distance
-            checked: $checked
-          )
-        }
-      `,
+      query: getFilteredPlaces,
       variables() {
         const category = [];
-        this.category.forEach((el) => category.push(el.value));
+        this.category.forEach(el => category.push(el.value));
 
         return {
           category: category,
           price: this.price,
           distance: this.distance,
           checked: this.checked,
+          currentX: "127.039604663862",
+          currentY: "37.5012860931305"
         };
       },
       skip() {
         return this.skipQuery;
-      },
-    },
+      }
+    }
   },
   methods: {
+    ...mapActions(["fetchFilteredPlaces", "getFilterValues"]),
     handleFieldChange(field) {
       this.formInputField = field;
     },
-    handleSubmit() {
-      console.log("clicked!");
-      this.$apollo.queries.getFilteredPlaces.skip = false;
-      this.$apollo.queries.getFilteredPlaces.refetch();
-      router.push({ name: "ResultPage" });
-    },
-  },
+    async handleSubmit() {
+      // apollo query 실행
+      if (this.price && this.distance && this.category) {
+        this.$apollo.queries.getFilteredPlaces.skip = false;
+        this.getFilterValues({
+          price: this.price,
+          distance: this.distance,
+          category: this.category.map(el => el.value),
+          checked: this.checked
+        });
+        const places = await this.$apollo.queries.getFilteredPlaces.refetch();
+        console.log(places);
+
+        // query return값 state 저장
+        this.fetchFilteredPlaces(places.data.getFilteredPlaces);
+        router.push({ name: "ResultPage" });
+      } else {
+        alert("필터를 마저 설정해주세요 'ㅅ'!");
+      }
+    }
+  }
 };
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-
 <style lang="scss">
 @import "../scss/main.scss";
 </style>

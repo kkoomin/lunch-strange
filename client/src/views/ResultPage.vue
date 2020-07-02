@@ -2,7 +2,7 @@
   <section class="result-page">
     <header>
       <div class="filter-result">
-        <span>| 8000원 | 1km 이내 | 한식 |</span>
+        <!-- <span>| {{price}}원 | {{distance}}m 이내 | {{category}} | {{checked ? "점심부페 포함" : "점심부페 미포함"}} |</span> -->
         <router-link to="/">
           <button class="small-btn">필터 재설정</button>
         </router-link>
@@ -12,11 +12,7 @@
     <article class="result-container">
       <!-- List -->
       <div class="list">
-        <placeResult
-          v-for="place in allPlaces()"
-          v-bind:key="place.name"
-          :place="place"
-        />
+        <placeResult v-for="place in allPlaces()" v-bind:key="place.p_name" :place="place" />
       </div>
       <!-- Map -->
       <div>
@@ -29,12 +25,17 @@
 <script>
 import PlaceResult from "../components/PlaceResult";
 import Map from "../components/Map";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "ResultPage",
   components: { PlaceResult, Map },
+  computed: { ...mapState(["price", "distance", "category", "checked"]) },
   methods: { ...mapGetters(["allPlaces"]) },
+  created() {
+    this.allPlaces();
+    console.log(this.price);
+  }
 };
 </script>
 

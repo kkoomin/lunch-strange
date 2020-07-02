@@ -1,9 +1,52 @@
-.main-page {
-  width: 75%;
-  // height: 70vh;
-  margin: 0 auto;
-  //   background-image: url("../assets/bg01.jpg");
-  //   background-position: center;
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
+.main-page_img {
+  // width: 80%;
+  // height: 30rem;
+  margin: 3rem auto;
+  // background-image: url("../assets/bg01.jpg");
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+}
+
+.about-info {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  &__service-desc,
+  &__feature-desc,
+  &__contact-us {
+    width: 75%;
+    margin: 3rem auto;
+  }
+
+  &__feature-desc {
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    .offer-list {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      div {
+        margin: 0 2rem;
+      }
+    }
+
+    &-img {
+      border-radius: 50%;
+      width: 15rem;
+    }
+  }
+
+  &__contact-us {
+    width: 75%;
+    display: flex;
+    justify-content: space-evenly;
+
+    .contact-form {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  }
 }

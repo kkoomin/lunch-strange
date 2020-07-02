@@ -5,6 +5,7 @@
   width: 75%;
   margin: 1rem auto 2rem auto;
   border-bottom: 1px solid $black;
+  font-weight: 500;
 
   nav {
     display: inline-block;
@@ -16,6 +17,7 @@
       all: unset;
       display: inline-block;
       margin: 0 1rem;
+      padding: 0 0.2rem;
       cursor: pointer;
 
       &:hover {
@@ -48,6 +50,6 @@
 }
 
 .logo {
-  height: 150px;
+  height: 130px;
   margin-bottom: 5px;
 }

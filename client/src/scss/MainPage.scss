@@ -1,11 +1,13 @@
 .main-page_img {
-  // width: 80%;
-  // height: 30rem;
+  width: 80%;
+  height: 30rem;
   margin: 3rem auto;
-  // background-image: url("../assets/bg01.jpg");
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
+  border-top-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+  background-image: url("../assets/main-pic01.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .about-info {
@@ -17,7 +19,7 @@
   &__feature-desc,
   &__contact-us {
     width: 75%;
-    margin: 3rem auto;
+    margin: 8rem auto;
   }
 
   &__feature-desc {
@@ -25,8 +27,9 @@
     font-weight: 500;
 
     .offer-list {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      // justify-content: center;
+      grid-template-columns: 1fr 1fr 1fr;
       margin-top: 3rem;
       div {
         margin: 0 2rem;
@@ -48,5 +51,19 @@
       margin: 1rem;
       padding: 1rem;
     }
+  }
+}
+
+.price-tag {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 1rem;
+
+  &:hover {
+    background-image: linear-gradient(to right, $orange, $orange);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
   }
 }

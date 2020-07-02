@@ -1,9 +1,10 @@
 <template>
   <section class="main-page">
+    <h1>🍱 오늘은 또 뭘 먹지?</h1>
     <FilterForm />
 
     <article class="about-info">
-      <div class="about-info__service-desc main-page_img">
+      <div class="about-info__service-desc">
         <h1>🔆1,400만 개의 점심 메뉴를 보고 왔다</h1>
 
         <p>
@@ -13,6 +14,7 @@
           걱정인 직장인들과 학생들을 위해 합리적인 가격으로 점심을 해결할 수
           있는 식당들을 소개합니다.
         </p>
+        <div class="main-page_img"></div>
       </div>
       <div class="about-info__feature-desc">
         <h1>📌 이런 서비스가 있어요</h1>

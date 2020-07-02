@@ -27,27 +27,34 @@
         </ul>
       </nav>
       <div class="form-input">
-        <input
-          v-if="formInputField === 'price'"
-          type="number"
-          placeholder="💲 점심 가격은 얼마까지?"
-          step="500"
-          min="0"
-          max="1000000"
-          required
-          v-model="price"
-        />
+        <div v-if="formInputField === 'price'">
+          <input
+            type="number"
+            placeholder="💲 점심 가격은 얼마까지?"
+            step="500"
+            min="0"
+            max="1000000"
+            required
+            v-model="price"
+          />
+          <span class="price-tag" @click="handleTagPrice('6000')">#6,000원</span>
+          <span class="price-tag" @click="handleTagPrice('8000')">#8,000원</span>
+          <span class="price-tag" @click="handleTagPrice('10000')">#10,000원</span>
+          <span class="price-tag" @click="handleTagPrice('12000')">#12,000원</span>
+        </div>
 
-        <input
-          v-else-if="formInputField === 'distance'"
-          type="number"
-          step="50"
-          min="0"
-          max="5000"
-          required
-          placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어? (ex. 500m → 500으로 입력)"
-          v-model="distance"
-        />
+        <div v-else-if="formInputField === 'distance'">
+          <input
+            type="number"
+            step="50"
+            min="0"
+            max="5000"
+            required
+            placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어? (ex. 500m → 500으로 입력)"
+            v-model="distance"
+          />
+        </div>
+
         <div v-else>
           <multiselect
             class="multiselect"
@@ -161,8 +168,14 @@ export default {
         this.fetchFilteredPlaces(places.data.getFilteredPlaces);
         router.push({ name: "ResultPage" });
       } else {
-        alert("필터를 마저 설정해주세요 'ㅅ'!");
+        alert("⚠️ 필터를 마저 설정해주세요.");
       }
+    },
+    handleTagPrice(price) {
+      this.price = price;
+    },
+    handleTagDistance(distance) {
+      this.distance = distance;
     }
   }
 };

@@ -3,9 +3,14 @@ const state = {
   distance: null,
   category: null,
   checked: false,
+  currentX: null,
+  currentY: null,
 };
 
-const getters = {};
+const getters = {
+  getCurrentX: (state) => state.currentX,
+  getCurrentY: (state) => state.currentY,
+};
 
 const mutations = {
   setFilters: (state, filter) => {
@@ -14,10 +19,17 @@ const mutations = {
     state.category = filter.category;
     state.checked = filter.checked;
   },
+  setCoords: (state, coords) => {
+    state.currentX = coords.longitude;
+    state.currentY = coords.latitude;
+  },
 };
 const actions = {
   getFilterValues({ commit }, filter) {
     commit("setFilters", filter);
+  },
+  setCoordsState({ commit }, coords) {
+    commit("setCoords", coords);
   },
 };
 

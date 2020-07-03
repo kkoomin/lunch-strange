@@ -69,7 +69,7 @@ export default {
   methods: {
     ...mapActions(["setCoordsState"]),
   },
-  created() {
+  async created() {
     let options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -78,12 +78,13 @@ export default {
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-    navigator.geolocation.getCurrentPosition(
-      (pos) =>
+    await navigator.geolocation.getCurrentPosition(
+      (pos) => {
         this.setCoordsState({
           latitude: pos.coords.latitude,
           longitude: pos.coords.longitude,
-        }),
+        });
+      },
       error,
       options
     );

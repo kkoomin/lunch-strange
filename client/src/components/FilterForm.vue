@@ -159,7 +159,7 @@ export default {
       category: null,
       checked: false,
       //
-      ...mapGetters(["currentX", "currentY"]),
+      ...mapGetters(["getCurrentX", "getCurrentY"]),
       options: [
         { name: "한식", value: "한식" },
         { name: "양식", value: "양식" },
@@ -182,8 +182,8 @@ export default {
           price: this.price,
           distance: this.distance,
           checked: this.checked,
-          currentX: this.currentX,
-          currentY: this.currentY,
+          currentX: this.getCurrentX(),
+          currentY: this.getCurrentY(),
         };
       },
       skip() {

@@ -1,0 +1,71 @@
+.canteen {
+  width: 14rem;
+  margin: 1.5rem;
+  // box-shadow: 2px 3px 5px #acaaaa;
+  // perspective: 1000px;
+}
+
+.canteen-wrapper {
+  position: relative;
+  width: 14rem;
+  height: 17rem;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  &:hover {
+    transform: rotateY(180deg);
+  }
+}
+
+.canteen-front,
+.canteen-back {
+  position: absolute;
+  width: 14rem;
+  height: 17rem;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.canteen-front {
+  box-shadow: 2px 3px 5px #acaaaa;
+
+  figure {
+    margin: 0;
+    display: block;
+    width: inherit;
+    height: 9rem;
+    overflow: hidden;
+
+    img {
+      height: inherit;
+      overflow: hidden;
+    }
+  }
+  .canteen-info {
+    padding: 0 1rem 1rem 1rem;
+    text-align: left;
+    span {
+      font-size: 0.9rem;
+    }
+    h3 {
+      margin: 1rem;
+      text-align: center;
+    }
+    .canteen-price {
+      display: block;
+      font-size: 1rem;
+    }
+  }
+}
+
+.canteen-back {
+  transform: rotateY(180deg);
+  box-shadow: 2px 3px 5px #acaaaa;
+  background-color: $orange;
+  display: flex;
+
+  button {
+    display: block;
+    margin: auto;
+    background-color: white;
+  }
+}

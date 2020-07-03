@@ -1,0 +1,62 @@
+.main-page_img {
+  width: 80%;
+  height: 30rem;
+  margin: 3rem auto;
+  border-top-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+  background-image: url("../assets/main-pic01.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.about-info {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  &__service-desc,
+  &__feature-desc,
+  &__contact-us {
+    width: 75%;
+    margin: 8rem auto;
+  }
+
+  &__service-desc {
+    p {
+      line-height: 1.8rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+  }
+
+  &__feature-desc {
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    .offer-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-top: 3rem;
+      div {
+        margin: 0 2rem;
+      }
+    }
+
+    &-img {
+      border-radius: 50%;
+      width: 15rem;
+    }
+  }
+
+  &__contact-us {
+    width: 75%;
+    display: flex;
+    justify-content: space-evenly;
+
+    .contact-form {
+      margin: 1rem;
+      padding: 1rem;
+    }
+  }
+}

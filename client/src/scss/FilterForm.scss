@@ -1,0 +1,223 @@
+.filter-from-wrapper {
+  margin-top: 2rem;
+}
+
+.form-container {
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 14px 1px rgba(41, 37, 33, 0.15);
+
+  .form-nav {
+    ul {
+      all: unset;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    li {
+      all: unset;
+      display: inline-block;
+      text-align: center;
+      height: 2.5rem;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-radius: 15px;
+    }
+
+    &__button {
+      all: unset;
+      width: 100%;
+      height: 100%;
+      background-color: $orange;
+      color: $ivory;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #fff;
+      color: $black;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .left {
+      border-top-left-radius: 15px;
+    }
+    .right {
+      border-top-right-radius: 15px;
+    }
+  }
+
+  .form-input {
+    padding: 2rem;
+  }
+
+  .checkbox {
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin: 0 3px;
+    border: none;
+  }
+}
+
+.multiselect {
+  margin: 0 auto;
+  width: 31rem;
+  margin: 1rem auto;
+  // padding: 0 0.5rem;
+  // color: inherit;
+  border: 2px solid #333333;
+  border-radius: 5px;
+  &__placeholder {
+    color: #999;
+    font-size: 1rem;
+  }
+  border: none;
+  border-bottom: 2px solid $orange;
+  border-radius: 0;
+  &:focus {
+    outline: none;
+  }
+  &__tag {
+    border: 1px solid $orange;
+    background-color: $orange;
+
+    color: $ivory;
+
+    &-icon:hover,
+    &-icon:hover:after {
+      // background-color: $orange;
+      background-color: $ivory;
+      color: $black;
+    }
+  }
+  &__option--highlight {
+    background-color: $orange;
+  }
+}
+
+.form-input-result {
+  width: 70%;
+  height: 5rem;
+  margin: 1rem auto;
+  background-color: rgba(141, 140, 140, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-family: "SSM", sans-serif;
+    font-size: 1.1rem;
+    color: $black;
+    margin: 0 3px;
+  }
+}
+
+.jagged-bottom {
+  position: relative;
+}
+.jagged-bottom:after {
+  background: rgba(141, 140, 140, 0.15);
+  content: "";
+  height: 1rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  clip-path: polygon(
+    0 0,
+    2.5% 100%,
+    5% 0,
+    7.5% 100%,
+    10% 0,
+    12.5% 100%,
+    15% 0,
+    17.5% 100%,
+    20% 0,
+    22.5% 100%,
+    25% 0,
+    27.5% 100%,
+    30% 0,
+    32.5% 100%,
+    35% 0,
+    37.5% 100%,
+    40% 0,
+    42.5% 100%,
+    45% 0,
+    47.5% 100%,
+    50% 0,
+    52.5% 100%,
+    55% 0,
+    57.5% 100%,
+    60% 0,
+    62.5% 100%,
+    65% 0,
+    67.5% 100%,
+    70% 0,
+    72.5% 100%,
+    75% 0,
+    77.5% 100%,
+    80% 0,
+    82.5% 100%,
+    85% 0,
+    87.5% 100%,
+    90% 0,
+    92.5% 100%,
+    95% 0,
+    97.5% 100%,
+    100% 0
+  );
+}
+// https://stackoverflow.com/questions/13774952/making-jagged-triangle-border-in-css
+
+.filter-submit-btn {
+  margin-top: 3rem;
+}
+
+// orange colored input 태그 영역 라인
+.line-input {
+  border: none;
+  border-bottom: 2px solid $orange;
+  border-radius: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+// 태그형 input 선택
+.price-tag,
+.distance-tag {
+  font-family: "Cookie", sans-serif;
+
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 1rem;
+
+  &:hover {
+    background-image: linear-gradient(to right, $orange, $orange);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+  }
+}
+
+.buffet-incl-btn {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.included {
+  border-color: $orange;
+  background-color: $orange;
+  color: $ivory;
+
+  &:hover {
+    border-color: $black;
+    background-color: $ivory;
+    color: $black;
+  }
+}

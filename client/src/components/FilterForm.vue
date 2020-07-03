@@ -8,21 +8,27 @@
               class="form-nav__button left"
               :class="[formInputField === 'price' ? 'active' : '']"
               @click="handleFieldChange('price')"
-            >예산</button>
+            >
+              예산
+            </button>
           </li>
           <li>
             <button
               class="form-nav__button"
               :class="[formInputField === 'distance' ? 'active' : '']"
               @click="handleFieldChange('distance')"
-            >거리</button>
+            >
+              거리
+            </button>
           </li>
           <li>
             <button
               class="form-nav__button right"
               :class="[formInputField === 'category' ? 'active' : '']"
               @click="handleFieldChange('category')"
-            >분류</button>
+            >
+              분류
+            </button>
           </li>
         </ul>
       </nav>
@@ -38,10 +44,18 @@
             required
             v-model="price"
           />
-          <span class="price-tag" @click="handleTagPrice('6000')">#6,000원</span>
-          <span class="price-tag" @click="handleTagPrice('8000')">#8,000원</span>
-          <span class="price-tag" @click="handleTagPrice('10000')">#10,000원</span>
-          <span class="price-tag" @click="handleTagPrice('12000')">#12,000원</span>
+          <span class="price-tag" @click="handleTagPrice('6000')"
+            >#6,000원</span
+          >
+          <span class="price-tag" @click="handleTagPrice('8000')"
+            >#8,000원</span
+          >
+          <span class="price-tag" @click="handleTagPrice('10000')"
+            >#10,000원</span
+          >
+          <span class="price-tag" @click="handleTagPrice('12000')"
+            >#12,000원</span
+          >
         </div>
 
         <div v-else-if="formInputField === 'distance'">
@@ -56,10 +70,18 @@
             v-model="distance"
           />
 
-          <span class="distance-tag" @click="handleTagDistance('300')">#완전 코앞</span>
-          <span class="distance-tag" @click="handleTagDistance('500')">#슬슬 걸어서 5분 거리</span>
-          <span class="distance-tag" @click="handleTagDistance('750')">#10분이면 갈 수 있지</span>
-          <span class="distance-tag" @click="handleTagDistance('1000')">#걸어서 15분 정도 산책</span>
+          <span class="distance-tag" @click="handleTagDistance('300')"
+            >#완전 코앞</span
+          >
+          <span class="distance-tag" @click="handleTagDistance('500')"
+            >#슬슬 걸어서 5분 거리</span
+          >
+          <span class="distance-tag" @click="handleTagDistance('750')"
+            >#10분이면 갈 수 있지</span
+          >
+          <span class="distance-tag" @click="handleTagDistance('1000')"
+            >#걸어서 15분 정도 산책</span
+          >
         </div>
 
         <div v-else>
@@ -76,22 +98,35 @@
 
           <button
             class="small-btn buffet-incl-btn"
-            :class="checked ?'included': null"
+            :class="checked ? 'included' : null"
             @click="handleBuffetIncl"
-          >{{checked ? "✔️" : "➖"}}점심 부페 포함</button>
+          >
+            {{ checked ? "✔️" : "➖" }}점심 부페 포함
+          </button>
         </div>
       </div>
     </div>
 
-    <div v-if="price || distance || category" class="form-input-result-container">
+    <div
+      v-if="price || distance || category"
+      class="form-input-result-container"
+    >
       <div class="form-input-result jagged-bottom">
-        <span v-if="price">{{ price.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") }}원 이내로,</span>
+        <span v-if="price"
+          >{{ price.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") }}원 이내로,</span
+        >
         <span v-if="distance">{{ distance }}m 안에서,</span>
-        <span v-if="category">{{ category.map((el) => el.value).join(", ") }} 중 하나로.</span>
-        <span v-if="category">점심 부페{{ checked ? " 갈 수도 있음" : "는 패스" }}</span>
+        <span v-if="category"
+          >{{ category.map((el) => el.value).join(", ") }} 중 하나로.</span
+        >
+        <span v-if="category"
+          >점심 부페{{ checked ? " 갈 수도 있음" : "는 패스" }}</span
+        >
       </div>
 
-      <button class="main-btn filter-submit-btn" @click.prevent="handleSubmit">오늘은 여기서 먹는다!</button>
+      <button class="main-btn filter-submit-btn" @click.prevent="handleSubmit">
+        오늘은 여기서 먹는다!
+      </button>
     </div>
 
     <!-- 로딩 안내 -->
@@ -107,7 +142,7 @@
 import router from "@/router";
 import Multiselect from "vue-multiselect";
 import { getFilteredPlaces } from "../graphql/getFilteredPlaces.js";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "FilterForm",
@@ -124,14 +159,15 @@ export default {
       category: null,
       checked: false,
       //
+      ...mapGetters(["currentX", "currentY"]),
       options: [
         { name: "한식", value: "한식" },
         { name: "양식", value: "양식" },
         { name: "중식", value: "중식" },
         { name: "분식", value: "분식" },
         { name: "일식", value: "일식" },
-        { name: "기타", value: "기타" }
-      ]
+        { name: "기타", value: "기타" },
+      ],
     };
   },
   apollo: {
@@ -139,21 +175,21 @@ export default {
       query: getFilteredPlaces,
       variables() {
         const category = [];
-        this.category.forEach(el => category.push(el.value));
+        this.category.forEach((el) => category.push(el.value));
 
         return {
           category: category,
           price: this.price,
           distance: this.distance,
           checked: this.checked,
-          currentX: "127.039604663862",
-          currentY: "37.5012860931305"
+          currentX: this.currentX,
+          currentY: this.currentY,
         };
       },
       skip() {
         return this.skipQuery;
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -167,8 +203,8 @@ export default {
         this.getFilterValues({
           price: this.price,
           distance: this.distance,
-          category: this.category.map(el => el.value),
-          checked: this.checked
+          category: this.category.map((el) => el.value),
+          checked: this.checked,
         });
 
         // graphql query 실행
@@ -193,8 +229,8 @@ export default {
     },
     handleTagDistance(distance) {
       this.distance = distance;
-    }
-  }
+    },
+  },
 };
 </script>
 

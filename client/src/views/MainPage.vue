@@ -9,9 +9,9 @@
         <p>
           Lunch Strange는 "오늘은 뭐 먹지?" 하는 일상의 고민을 해결하는
           서비스입니다.
-          <br />서울 시내 주요 직장가의 높은 점심값이 언제나
-          걱정인 직장인들과 학생들을 위해 합리적인 가격으로 점심을 해결할 수
-          있는 식당들을 소개합니다.
+          <br />서울 시내 주요 직장가의 높은 점심값이 언제나 걱정인 직장인들과
+          학생들을 위해 합리적인 가격으로 점심을 해결할 수 있는 식당들을
+          소개합니다.
         </p>
         <div class="main-page_img"></div>
       </div>
@@ -61,19 +61,33 @@
 <script>
 import FilterForm from "../components/FilterForm.vue";
 import Support from "../components/Support.vue";
-
 import { mapActions } from "vuex";
 
 export default {
   name: "MainPage",
   components: { Support, FilterForm },
   methods: {
-    ...mapActions(["handleCurrentLocation"])
+    ...mapActions(["setCoordsState"]),
   },
   created() {
-    // console.log(navigator.geolocation.getCurrentPosition((p) => p));
-    this.handleCurrentLocation([14141423.7466065, 4509587.603053]);
-  }
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) =>
+        this.setCoordsState({
+          latitude: pos.coords.latitude,
+          longitude: pos.coords.longitude,
+        }),
+      error,
+      options
+    );
+  },
 };
 </script>
 

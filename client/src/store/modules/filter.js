@@ -7,7 +7,10 @@ const state = {
   currentY: null,
 };
 
-const getters = {};
+const getters = {
+  getCurrentX: (state) => state.currentX,
+  getCurrentY: (state) => state.currentY,
+};
 
 const mutations = {
   setFilters: (state, filter) => {

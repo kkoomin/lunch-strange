@@ -182,8 +182,8 @@ export default {
           price: this.price,
           distance: this.distance,
           checked: this.checked,
-          currentX: this.getCurrentX(),
-          currentY: this.getCurrentY(),
+          currentX: this.getCurrentX().toString(),
+          currentY: this.getCurrentY().toString(),
         };
       },
       skip() {

@@ -11,7 +11,6 @@
         </li>
       </ul>
       <button class="small-btn" @click="handleDetailClick(place.p_id)">더보기</button>
-      <!-- <button class="small-btn">길찾기</button> -->
     </div>
   </div>
 </template>

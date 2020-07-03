@@ -6,23 +6,26 @@
       {{place.p_description}}
       {{place.p_menu}}
       {{place.p_tags}}
-      <Map />
+      <!-- <Map /> -->
     </article>
   </section>
 </template>
 
 <script>
-import Map from "../components/Map";
+// import Map from "../components/Map";
 import { getPlace } from "../graphql/place.js";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "PlacePage",
-  components: { Map },
+  // components: { Map },
   data() {
     return {
       skipQuery: true
     };
+  },
+  computed: {
+    ...mapGetters(["place"])
   },
   methods: {
     ...mapActions(["fetchPlace"])
@@ -41,8 +44,9 @@ export default {
   },
   async created() {
     this.$apollo.queries.getPlace.skip = false;
-    const post = await this.$apollo.queries.getPlace.refetch();
-    this.fetchPlace(post.data.getPlace);
+    const place = await this.$apollo.queries.getPlace.refetch();
+    this.fetchPlace(place.data.getPlace);
+    console.log(this.place);
   }
 };
 </script>

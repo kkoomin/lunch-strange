@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const getPlace = gql`
-  query getPlace {
-    getPlace {
+  query getPlace($id: String!) {
+    getPlace(id: $id) {
       p_description
       p_img
       menu {

@@ -177,7 +177,7 @@ export default {
         const category = [];
         this.category.forEach((el) => category.push(el.value));
 
-        return {
+        const filters = {
           category: category,
           price: this.price,
           distance: this.distance,
@@ -185,6 +185,9 @@ export default {
           currentX: this.getCurrentX().toString(),
           currentY: this.getCurrentY().toString(),
         };
+
+        console.log(filters);
+        return filters;
       },
       skip() {
         return this.skipQuery;

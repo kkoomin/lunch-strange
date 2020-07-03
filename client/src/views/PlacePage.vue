@@ -1,7 +1,11 @@
 <template>
   <section class="place-page">
-    <article class="place-info">
+    <article v-if="place" class="place-info">
       가게 상세 페이지 (가게명, 주소 등)
+      {{place.p_name}}
+      {{place.p_description}}
+      {{place.p_menu}}
+      {{place.p_tags}}
       <Map />
     </article>
   </section>
@@ -9,10 +13,37 @@
 
 <script>
 import Map from "../components/Map";
+import { getPlace } from "../graphql/place.js";
+import { mapActions } from "vuex";
 
 export default {
   name: "PlacePage",
   components: { Map },
+  data() {
+    return {
+      skipQuery: true
+    };
+  },
+  methods: {
+    ...mapActions(["fetchPlace"])
+  },
+  apollo: {
+    getPlace: {
+      query: getPlace,
+      variables() {
+        const id = location.pathname.split("/")[2];
+        return { id };
+      },
+      skip() {
+        return this.skipQuery;
+      }
+    }
+  },
+  async created() {
+    this.$apollo.queries.getPlace.skip = false;
+    const post = await this.$apollo.queries.getPlace.refetch();
+    this.fetchPlace(post.data.getPlace);
+  }
 };
 </script>
 

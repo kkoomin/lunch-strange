@@ -1,45 +1,98 @@
 <template>
   <section class="cvs-read-page">
-    <article class="cvs-post">
-      <h2 class="cvs-post_title">{{ post.title }}</h2>
+    <article v-if="post" class="cvs-post">
+      <h2 class="cvs-post_title">{{ post.c_title }}</h2>
       <div class="cvs-post_info">
-        <span>📝{{ post.id }}</span>
+        <span>📝{{ post._id }}</span>
         <span>🧑🏻‍💻{{ post.author }}</span>
-        <span>👍{{ post.likes }}</span>
-        <span>👁{{ post.views }}</span>
+        <span>👍{{ post.c_likes }}</span>
+        <span>👁{{ post.c_views }}</span>
         <span class="cvs-post_info-createdAt">⏱{{ post.createdAt }}</span>
       </div>
-      <p class="cvs-post_content">{{ post.content }}</p>
+      <p class="cvs-post_content">{{ post.c_content }}</p>
     </article>
     <button class="small-btn" @click="handleListClick">목록</button>
-    <button class="small-btn">👍</button>
+    <button class="small-btn" @click="handleAddLikes(post._id)">👍</button>
     <button class="small-btn">수정</button>
-    <button class="small-btn">삭제</button>
+    <button class="small-btn" @click="handleDelete(post._id)">삭제</button>
   </section>
 </template>
 
 <script>
 import router from "@/router";
+import { addLikes, getPost, deletePost } from "../graphql/post.js";
+// import gql from "graphql-tag";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "CVSReadPage",
+  computed: { ...mapGetters(["post"]) },
   data() {
     return {
-      post: null,
+      skipQuery: true
     };
   },
+  apollo: {
+    getPost: {
+      query: getPost,
+      variables() {
+        const id = location.pathname.split("/")[2];
+        return { id };
+      },
+      skip() {
+        return this.skipQuery;
+      }
+    }
+  },
   methods: {
+    ...mapActions(["fetchPost"]),
     handleListClick() {
       router.push("/cvs");
     },
+    handleDelete(id) {
+      this.$apollo
+        .mutate({
+          mutation: deletePost,
+          variables: {
+            id: id
+          }
+        })
+        .then(data => {
+          console.log(data);
+          if (data.data.deletePost.result) {
+            alert("❗️게시글이 삭제되었습니다.");
+            router.push("/cvs");
+          } else {
+            alert("❗️게시글을 삭제하는 도중 오류가 발생했습니다.");
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    handleAddLikes(id) {
+      this.$apollo
+        .mutate({
+          mutation: addLikes,
+          variables: {
+            id: id
+          }
+        })
+        .then(post => {
+          this.fetchPost(post.data.addLikes);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   },
-  created() {
-    const id = location.href.split("/").reverse()[0];
-    this.post = this.$store.state.post.posts.filter(
-      (post) => post.id === id
-    )[0];
-    // 이 id 값으로 db에서 post 정보 가져오기 ;(
-  },
+  async created() {
+    console.log(location.pathname.split("/")[2]);
+
+    this.$apollo.queries.getPost.skip = false;
+    const post = await this.$apollo.queries.getPost.refetch();
+    this.fetchPost(post.data.getPost);
+  }
 };
 </script>
 

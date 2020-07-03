@@ -1,6 +1,8 @@
 <template>
   <div class="place-result">
-    <h3 class="place-name">{{ place.p_name }}</h3>
+    <div class="place-header">
+      <h3 class="place-name">{{ place.p_name }}</h3>
+    </div>
     <div class="place-menu">
       <ul v-for="menu in place.menu" v-bind:key="menu.m_name">
         <li>

@@ -29,6 +29,7 @@
       <div class="form-input">
         <div v-if="formInputField === 'price'">
           <input
+            class="line-input"
             type="number"
             placeholder="💲 점심 가격은 얼마까지?"
             step="500"
@@ -45,6 +46,7 @@
 
         <div v-else-if="formInputField === 'distance'">
           <input
+            class="line-input"
             type="number"
             step="50"
             min="0"
@@ -53,6 +55,11 @@
             placeholder="🚶🏻‍♂️ 어디까지 갈 수 있어? (ex. 500m → 500으로 입력)"
             v-model="distance"
           />
+
+          <span class="distance-tag" @click="handleTagDistance('300')">#완전 코앞</span>
+          <span class="distance-tag" @click="handleTagDistance('500')">#슬슬 걸어서 5분 거리</span>
+          <span class="distance-tag" @click="handleTagDistance('750')">#10분이면 갈 수 있지</span>
+          <span class="distance-tag" @click="handleTagDistance('1000')">#걸어서 15분 정도 산책</span>
         </div>
 
         <div v-else>
@@ -67,16 +74,11 @@
             :multiple="true"
           ></multiselect>
 
-          <label for="buffet-incl">
-            <input
-              class="checkbox"
-              type="checkbox"
-              name="buffet-incl"
-              :checked="checked"
-              @input="checked = $event.target.checked"
-            />
-            점심 부페 포함
-          </label>
+          <button
+            class="small-btn buffet-incl-btn"
+            :class="checked ?'included': null"
+            @click="handleBuffetIncl"
+          >{{checked ? "✔️" : "➖"}}점심 부페 포함</button>
         </div>
       </div>
     </div>
@@ -91,6 +93,13 @@
 
       <button class="main-btn filter-submit-btn" @click.prevent="handleSubmit">오늘은 여기서 먹는다!</button>
     </div>
+
+    <!-- 로딩 안내 -->
+    <!-- <div class="modal" @click.self="$emit('toggleModal')">
+      <div class="modal-content">
+        <img class="menu-image" :src="img" alt="menu image" />
+      </div>
+    </div>-->
   </article>
 </template>
 
@@ -146,30 +155,38 @@ export default {
       }
     }
   },
+
   methods: {
     ...mapActions(["fetchFilteredPlaces", "getFilterValues"]),
     handleFieldChange(field) {
       this.formInputField = field;
     },
     async handleSubmit() {
-      // apollo query 실행
       if (this.price && this.distance && this.category) {
-        this.$apollo.queries.getFilteredPlaces.skip = false;
+        // Filter input 선택값 state 저장
         this.getFilterValues({
           price: this.price,
           distance: this.distance,
           category: this.category.map(el => el.value),
           checked: this.checked
         });
+
+        // graphql query 실행
+        this.$apollo.queries.getFilteredPlaces.skip = false;
         const places = await this.$apollo.queries.getFilteredPlaces.refetch();
         console.log(places);
 
-        // query return값 state 저장
+        // graphql query return값 state 저장
         this.fetchFilteredPlaces(places.data.getFilteredPlaces);
+
+        // result 페이지로 이동
         router.push({ name: "ResultPage" });
       } else {
         alert("⚠️ 필터를 마저 설정해주세요.");
       }
+    },
+    handleBuffetIncl() {
+      this.checked = !this.checked;
     },
     handleTagPrice(price) {
       this.price = price;

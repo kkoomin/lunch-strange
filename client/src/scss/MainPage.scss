@@ -22,13 +22,20 @@
     margin: 8rem auto;
   }
 
+  &__service-desc {
+    p {
+      line-height: 1.8rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+  }
+
   &__feature-desc {
     font-size: 1.1rem;
     font-weight: 500;
 
     .offer-list {
       display: grid;
-      // justify-content: center;
       grid-template-columns: 1fr 1fr 1fr;
       margin-top: 3rem;
       div {
@@ -51,19 +58,5 @@
       margin: 1rem;
       padding: 1rem;
     }
-  }
-}
-
-.price-tag {
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  margin: 0 1rem;
-
-  &:hover {
-    background-image: linear-gradient(to right, $orange, $orange);
-    background-position: bottom left;
-    background-repeat: no-repeat;
-    background-size: 100% 2px;
   }
 }

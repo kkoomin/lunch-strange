@@ -3,7 +3,9 @@
   padding: 3rem 1rem;
   width: 30rem;
   height: 20rem;
-  box-shadow: 3px 3px 5px rgb(189, 188, 188);
+  // box-shadow: 3px 3px 5px rgb(189, 188, 188);
+  border-radius: 5px;
+  box-shadow: 0 2px 15px 2px rgba(41, 37, 33, 0.15);
 }
 .kakao-login-btn {
   display: block;

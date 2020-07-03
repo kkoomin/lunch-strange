@@ -3,8 +3,9 @@
   grid-template-columns: auto 1fr;
   justify-content: center;
   width: 75%;
-  margin: 1rem auto 2rem auto;
-  border-bottom: 1px solid $black;
+  margin: 1rem auto 2.5rem auto;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #969696;
 
   nav {
     display: inline-block;
@@ -51,6 +52,6 @@
 }
 
 .logo {
-  height: 130px;
+  height: 140px;
   margin-bottom: 5px;
 }

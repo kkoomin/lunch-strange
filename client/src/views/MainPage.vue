@@ -6,7 +6,6 @@
     <article class="about-info">
       <div class="about-info__service-desc">
         <h1>🔆1,400만 개의 점심 메뉴를 보고 왔다</h1>
-
         <p>
           Lunch Strange는 "오늘은 뭐 먹지?" 하는 일상의 고민을 해결하는
           서비스입니다.

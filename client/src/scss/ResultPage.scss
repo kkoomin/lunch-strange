@@ -8,7 +8,7 @@
 
     @media only screen and (max-width: 1200px) {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column;
     }
   }
 
@@ -27,10 +27,11 @@
   .filter-result {
     display: inline-block;
     font-size: 1.1rem;
+    font-family: "Cookie", sans-serif;
 
     span {
       font-weight: 500;
-      margin: 0 3rem;
+      margin: 0 1rem;
     }
   }
 }

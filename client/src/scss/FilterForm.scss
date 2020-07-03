@@ -75,6 +75,28 @@
     color: #999;
     font-size: 1rem;
   }
+  border: none;
+  border-bottom: 2px solid $orange;
+  border-radius: 0;
+  &:focus {
+    outline: none;
+  }
+  &__tag {
+    border: 1px solid $orange;
+    background-color: $orange;
+
+    color: $ivory;
+
+    &-icon:hover,
+    &-icon:hover:after {
+      // background-color: $orange;
+      background-color: $ivory;
+      color: $black;
+    }
+  }
+  &__option--highlight {
+    background-color: $orange;
+  }
 }
 
 .form-input-result {
@@ -153,4 +175,49 @@
 
 .filter-submit-btn {
   margin-top: 3rem;
+}
+
+// orange colored input 태그 영역 라인
+.line-input {
+  border: none;
+  border-bottom: 2px solid $orange;
+  border-radius: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+// 태그형 input 선택
+.price-tag,
+.distance-tag {
+  font-family: "Cookie", sans-serif;
+
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 1rem;
+
+  &:hover {
+    background-image: linear-gradient(to right, $orange, $orange);
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+  }
+}
+
+.buffet-incl-btn {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.included {
+  border-color: $orange;
+  background-color: $orange;
+  color: $ivory;
+
+  &:hover {
+    border-color: $black;
+    background-color: $ivory;
+    color: $black;
+  }
 }

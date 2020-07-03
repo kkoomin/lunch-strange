@@ -1,5 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// import store from "@/store";
+
 import MainPage from "../views/MainPage.vue";
 import ResultPage from "../views/ResultPage.vue";
 import PlacePage from "../views/PlacePage.vue";
@@ -72,6 +74,13 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {});
+// router.beforeEach((to, from, next) => {
+//   const authRequiredPages = ["ResultPage"];
+//   const authRequired = authRequiredPages.includes(to.name);
+
+//   const { price } = store.state;
+
+//   authRequired && !price ? next("/") : next();
+// });
 
 export default router;

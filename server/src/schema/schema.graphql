@@ -1,0 +1,59 @@
+#####################################################
+# Querys
+#####################################################
+type Query{
+  Hello: String
+  getFilteredPlaces(category: [String], price: String, 
+    distance: String, checked: Boolean, currentX: String, currentY: String): [ Place ]
+  getPlace(id: String): Place
+  getPosts: [Post]
+  getPost(id: String): Post
+}
+
+#####################################################
+# Place
+type Place {
+  p_description: String,
+  p_img: String,
+  menu: [menu],
+  tags: [ String ],
+  p_name: String,
+  p_address: String,
+  p_phone: String,
+  p_id: String,
+  p_x: String,
+  p_y: String,
+}
+
+type menu {
+  m_name: String,
+  m_price: String,
+}
+
+type User{
+    u_id: String,
+    u_nickname: String,
+    u_phone: String,
+}
+
+type Post{
+    _id: ID,
+    c_title: String,
+    c_content: String,
+    c_likes: Int,
+    c_views: Int,
+    createdAt: String,
+}
+
+type Result {
+  result: String
+}
+#####################################################
+# Mutation
+#####################################################
+type Mutation{
+    createPost(title: String, content: String): Post
+    #updatePost(): Post
+    deletePost(id: String): Result
+    addLikes(id: String): Post
+}

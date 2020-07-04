@@ -231,6 +231,7 @@ export default {
     ...mapActions(["fetchFilteredPlaces", "getFilterValues", "setCoordsState"]),
     handleCurrentLocationSet(x, y) {
       this.setCoordsState({ longitude: x, latitude: y });
+      alert("현 위치가 설정되었습니다.");
     },
     handleFieldChange(field) {
       this.formInputField = field;

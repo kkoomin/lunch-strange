@@ -1,6 +1,6 @@
 <template>
   <section class="result-page">
-    <header>
+    <header v-if="price">
       <div class="filter-result">
         <span>#{{ this.$store.state.filter.price }}원</span>
         <span>#{{ this.$store.state.filter.distance }}m 이내</span>

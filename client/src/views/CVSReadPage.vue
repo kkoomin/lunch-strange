@@ -93,6 +93,9 @@ export default {
     const post = await this.$apollo.queries.getPost.refetch();
     this.fetchPost(post.data.getPost);
   },
+  beforeDestroy() {
+    this.fetchPost(null);
+  },
 };
 </script>
 

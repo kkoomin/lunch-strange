@@ -6,17 +6,29 @@
 import { mapGetters } from "vuex";
 
 export default {
+  props: ["place"],
   mounted() {
     if (window.kakao && window.kakao.maps) {
-      this.initMap(); // 지도 생성
-      this.setMarkers(); // 마커 찍기
+      if (this.place) {
+        this.initMap(this.place.p_y * 1, this.place.p_x * 1);
+      } else {
+        this.initMap(this.getCurrentY(), this.getCurrentX()); // 지도 생성
+        this.setMarkers(); // 마커 찍기
+      }
     } else {
       const script = document.createElement("script");
       /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
+      script.onload = () => {
+        kakao.maps.load(this.initMap(this.getCurrentY(), this.getCurrentX()));
+      };
       script.src =
         "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAO_API_KEY}";
       document.head.appendChild(script);
+    }
+  },
+  updated() {
+    if (this.place) {
+      this.initMap(this.place.p_y * 1, this.place.p_x * 1);
     }
   },
   data() {
@@ -26,16 +38,16 @@ export default {
     };
   },
   methods: {
-    ...mapGetters(["allPlaces"]),
-    initMap() {
+    ...mapGetters(["allPlaces", "getCurrentX", "getCurrentY"]),
+    initMap(y, x) {
       let container = document.getElementById("map");
       let options = {
-        center: new kakao.maps.LatLng(37.501286, 127.039604), // 지도의 중심 좌표 y, x
+        center: new kakao.maps.LatLng(y, x), // 지도의 중심 좌표 y, x
         level: 3,
       };
       this.map = new kakao.maps.Map(container, options); // 지도 생성
 
-      let markerPosition = new kakao.maps.LatLng(37.501286, 127.039604);
+      let markerPosition = new kakao.maps.LatLng(y, x);
 
       let imageSrc =
           "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",

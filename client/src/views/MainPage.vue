@@ -65,12 +65,14 @@
 import FilterForm from "../components/FilterForm.vue";
 import Support from "../components/Support.vue";
 import { mapActions } from "vuex";
+import cookies from "vue-cookies";
+import router from "@/router";
 
 export default {
   name: "MainPage",
   components: { Support, FilterForm },
   methods: {
-    ...mapActions(["setCoordsState", "finalizeLogin"]),
+    ...mapActions(["setCoordsState", "finalizeLogin", "getUserInfo"]),
   },
   async created() {
     let options = {
@@ -91,9 +93,11 @@ export default {
       error,
       options
     );
-
     if (window.location.hash !== "") {
       this.finalizeLogin();
+      const token = cookies.get("k_token");
+      this.getUserInfo(token);
+      router.push("/");
     }
   },
 };

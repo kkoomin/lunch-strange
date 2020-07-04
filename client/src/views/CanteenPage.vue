@@ -6,7 +6,9 @@
       <Canteen v-for="place in places" v-bind:key="place.id" :place="place" />
     </article>
 
-    <button class="canteen-register-btn inform-btn" @click="handleSupportClick">구내식당 등록 문의</button>
+    <button class="canteen-register-btn inform-btn" @click="handleSupportClick">
+      구내식당 등록 문의
+    </button>
   </section>
 </template>
 
@@ -20,7 +22,7 @@ export default {
   methods: {
     handleSupportClick() {
       router.push({ name: "CanteenSupportPage" });
-    }
+    },
   },
   data() {
     return {
@@ -32,7 +34,7 @@ export default {
           location: "역삼역",
           type: "점심뷔페",
           img: "https://i.imgur.com/RtZYS5s.jpg",
-          thumbnail: "https://i.imgur.com/VKwEXE4.png"
+          thumbnail: "https://i.imgur.com/VKwEXE4.png",
         },
         {
           id: "2",
@@ -41,7 +43,7 @@ export default {
           location: "역삼역",
           type: "구내식당",
           img: "https://i.imgur.com/8dqWGYs.png",
-          thumbnail: "https://i.imgur.com/kIagFsb.jpg?1"
+          thumbnail: "https://i.imgur.com/kIagFsb.jpg?1",
         },
         {
           id: "3",
@@ -50,38 +52,11 @@ export default {
           location: "역삼역",
           type: "점심뷔페",
           img: "https://i.imgur.com/8dqWGYs.png",
-          thumbnail: "https://i.imgur.com/GR9OgcA.jpg"
+          thumbnail: "https://i.imgur.com/GR9OgcA.jpg",
         },
-        {
-          id: "4",
-          name: "노랑통닭",
-          price: "5,000원",
-          location: "역삼역",
-          type: "점심뷔페",
-          img: "https://i.imgur.com/RtZYS5s.jpg",
-          thumbnail: "https://i.imgur.com/VKwEXE4.png"
-        },
-        {
-          id: "5",
-          name: "멀티캠퍼스 20층",
-          price: "6,000원",
-          location: "역삼역",
-          type: "구내식당",
-          img: "https://i.imgur.com/8dqWGYs.png",
-          thumbnail: "https://i.imgur.com/kIagFsb.jpg?1"
-        },
-        {
-          id: "6",
-          name: "멕시카나",
-          price: "6,000원",
-          location: "역삼역",
-          type: "점심뷔페",
-          img: "https://i.imgur.com/8dqWGYs.png",
-          thumbnail: "https://i.imgur.com/GR9OgcA.jpg"
-        }
-      ]
+      ],
     };
-  }
+  },
 };
 </script>
 

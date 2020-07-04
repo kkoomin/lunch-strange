@@ -15,8 +15,10 @@
       </thead>
       <tbody>
         <tr v-for="(post, index) in allPosts()" v-bind:key="post._id">
-          <td class="post-id">{{allPosts().length-index}}</td>
-          <td class="post-title" @click="handleReadClick(post._id)">{{ post.c_title }}</td>
+          <td class="post-id">{{ allPosts().length - index }}</td>
+          <td class="post-title" @click="handleReadClick(post._id)">
+            {{ post.c_title }}
+          </td>
           <td class="post-author">익명</td>
           <td class="post-createdAt">{{ post.createdAt }}</td>
           <td class="post-likes">{{ post.c_likes }}</td>
@@ -33,9 +35,7 @@
 <script>
 import router from "@/router";
 import { mapGetters, mapActions } from "vuex";
-import gql from "graphql-tag";
-
-// import { getPosts } from "../graphql/post.js";
+import { getPosts } from "../graphql/post.js";
 
 export default {
   name: "CVSPage",
@@ -43,33 +43,25 @@ export default {
     ...mapGetters(["allPosts"]),
     ...mapActions(["fetchPosts"]),
     handleWriteClick: () => router.push("/cvs/write"),
-    handleReadClick: id => router.push({ name: "CVSReadPage", params: { id } })
+    handleReadClick: (id) =>
+      router.push({ name: "CVSReadPage", params: { id } }),
   },
   apollo: {
     getPosts: {
-      query: gql`
-        query getPosts {
-          getPosts {
-            _id
-            c_title
-            c_content
-            c_likes
-            c_views
-            createdAt
-          }
-        }
-      `,
+      query: getPosts,
       skip() {
         return this.skipQuery;
-      }
-    }
+      },
+    },
   },
   async created() {
-    console.log("created!");
     this.$apollo.queries.getPosts.skip = false;
     const posts = await this.$apollo.queries.getPosts.refetch();
     this.fetchPosts(posts.data.getPosts);
-  }
+  },
+  beforeDestroy() {
+    this.fetchPosts([]);
+  },
 };
 </script>
 

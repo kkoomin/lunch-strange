@@ -3,6 +3,7 @@
     <div v-if="place" class="place-wrapper">
       <article v-if="place" class="place-container">
         <div
+          v-if="place.p_img !== 'default.png'"
           class="place-image"
           :style="{ 'background-image': 'url(' + place.p_img + ')' }"
         ></div>

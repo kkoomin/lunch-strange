@@ -1,7 +1,19 @@
 <template>
-  <section class="cvs-read-page">
-    <article v-if="post" class="cvs-post">
-      <h2 class="cvs-post_title">{{ post.c_title }}</h2>
+  <section v-if="post" class="cvs-read-page">
+    <article class="cvs-post">
+      <!-- title -->
+      <div class="cvs-post_title-container">
+        <h2 v-if="!isUpdateOn" class="cvs-post_title">{{ post.c_title }}</h2>
+        <input
+          class="cvs-title-input"
+          v-else
+          v-model="title"
+          type="text"
+          placeholder="글 제목을 입력해주세요."
+          required
+        />
+      </div>
+      <!-- info bar -->
       <div class="cvs-post_info">
         <span>📝{{ post._id }}</span>
         <span>🧑🏻‍💻익명</span>
@@ -9,19 +21,42 @@
         <span>👁{{ post.c_views }}</span>
         <span class="cvs-post_info-createdAt">⏱{{ post.createdAt }}</span>
       </div>
-      <p class="cvs-post_content">{{ post.c_content }}</p>
+      <!-- content -->
+      <div class="cvs-post_content-container">
+        <p v-if="!isUpdateOn" class="cvs-post_content">{{ post.c_content }}</p>
+
+        <textarea
+          class="cvs-content-input"
+          v-else
+          v-model="content"
+          rows="15"
+          placeholder="글 내용을 입력해주세요."
+          required
+        />
+      </div>
     </article>
-    <button class="small-btn" @click="handleListClick">목록</button>
-    <button class="small-btn" @click="handleAddLikes(post._id)">👍</button>
-    <button class="small-btn">수정</button>
-    <button class="small-btn" @click="handleDelete(post._id)">삭제</button>
+    <div class="cvs-button-container">
+      <div v-if="!isUpdateOn" class="cvs-main-buttons">
+        <button class="small-btn" @click="handleListClick">목록</button>
+        <button class="small-btn" @click="handleAddLikes(post._id)">👍</button>
+        <button class="small-btn" @click="handleUpdateOn">수정</button>
+        <button class="small-btn" @click="handleDelete(post._id)">삭제</button>
+      </div>
+      <div v-else class="cvs-update-buttons">
+        <button class="main-btn" @click="handleUpdateSubmit(post._id)">
+          수정 완료
+        </button>
+        <button class="small-btn" @click="handleListClick">목록</button>
+
+        <button class="small-btn" @click="handleUpdateOn">수정 취소</button>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 import router from "@/router";
-import { addLikes, getPost, deletePost } from "../graphql/post.js";
-// import gql from "graphql-tag";
+import { addLikes, getPost, deletePost, updatePost } from "../graphql/post.js";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -29,7 +64,10 @@ export default {
   computed: { ...mapGetters(["post"]) },
   data() {
     return {
+      isUpdateOn: false,
       skipQuery: true,
+      title: "",
+      content: "",
     };
   },
   apollo: {
@@ -49,26 +87,54 @@ export default {
     handleListClick() {
       router.push("/cvs");
     },
-    handleDelete(id) {
+    handleUpdateOn() {
+      this.isUpdateOn = !this.isUpdateOn;
+      this.title = this.post.c_title;
+      this.content = this.post.c_content;
+    },
+    handleUpdateSubmit(id) {
       this.$apollo
         .mutate({
-          mutation: deletePost,
+          mutation: updatePost,
           variables: {
             id: id,
+            title: this.title,
+            content: this.content,
           },
         })
-        .then((data) => {
-          console.log(data);
-          if (data.data.deletePost.result) {
-            alert("❗️게시글이 삭제되었습니다.");
-            router.push("/cvs");
-          } else {
-            alert("❗️게시글을 삭제하는 도중 오류가 발생했습니다.");
-          }
+        .then(() => {
+          alert("글 수정이 완료되었습니다!");
+          router.push({ name: "CVSPage" });
         })
         .catch((error) => {
           console.error(error);
+          alert("글 작성에 실패했습니다!");
         });
+    },
+    handleDelete(id) {
+      if (window.confirm("❗️해당 게시글을 삭제하시겠습니까?")) {
+        this.$apollo
+          .mutate({
+            mutation: deletePost,
+            variables: {
+              id: id,
+            },
+          })
+          .then((data) => {
+            console.log(data);
+            if (data.data.deletePost.result) {
+              alert("❗️게시글이 삭제되었습니다.");
+              router.push("/cvs");
+            } else {
+              alert("❗️게시글을 삭제하는 도중 오류가 발생했습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        alert("게시글 삭제가 취소되었습니다.");
+      }
     },
     handleAddLikes(id) {
       this.$apollo
@@ -87,8 +153,6 @@ export default {
     },
   },
   async created() {
-    console.log(location.pathname.split("/")[2]);
-
     this.$apollo.queries.getPost.skip = false;
     const post = await this.$apollo.queries.getPost.refetch();
     this.fetchPost(post.data.getPost);

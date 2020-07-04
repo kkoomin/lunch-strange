@@ -60,6 +60,11 @@
     }
     .contact-info {
       font-family: "Cookie", sans-serif;
+      p {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
       a {
         all: unset;
         cursor: pointer;

@@ -4,7 +4,7 @@ const state = {
 };
 
 const getters = {
-  allPosts: (state) => state.posts,
+  allPosts: (state) => state.posts.reverse(),
   post: (state) => state.post,
 };
 
@@ -14,9 +14,7 @@ const mutations = {
 };
 const actions = {
   fetchPosts: ({ commit }, posts) => {
-    const reversedPosts = posts.reverse();
-    console.log(reversedPosts);
-    commit("setPosts", reversedPosts);
+    commit("setPosts", posts);
   },
   fetchPost: ({ commit }, post) => {
     commit("setPost", post);

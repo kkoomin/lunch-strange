@@ -30,7 +30,7 @@ const actions = {
       commit("setToken", token);
     }
   },
-  async getUserInfo(token) {
+  async getUserInfo(_, token) {
     const result = axios.post(
       `${process.env.VUE_APP_SERVER_URL}auth/getUserInfo`,
       { token }

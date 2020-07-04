@@ -10,7 +10,12 @@
           <span>{{ menu.m_price }}</span>
         </li>
       </ul>
-      <button class="small-btn" @click="handleDetailClick(place.p_id)">더보기</button>
+      <button
+        class="small-btn place-detail-btn"
+        @click="handleDetailClick(place.p_id)"
+      >
+        더보기
+      </button>
     </div>
   </div>
 </template>
@@ -24,8 +29,8 @@ export default {
   methods: {
     handleDetailClick(id) {
       router.push({ name: "PlacePage", params: { id } });
-    }
-  }
+    },
+  },
 };
 </script>
 

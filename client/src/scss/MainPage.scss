@@ -58,5 +58,17 @@
       margin: 1rem;
       padding: 1rem;
     }
+    .contact-info {
+      font-family: "Cookie", sans-serif;
+      a {
+        all: unset;
+        cursor: pointer;
+        display: block;
+        color: inherit;
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
   }
 }

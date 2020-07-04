@@ -20,8 +20,8 @@ const mutations = {
     state.checked = filter.checked;
   },
   setCoords: (state, coords) => {
-    state.currentX = coords.longitude;
-    state.currentY = coords.latitude;
+    state.currentX = coords.longitude; // ex. 127.xxxx
+    state.currentY = coords.latitude; // ex. 37.xxxx
   },
 };
 const actions = {

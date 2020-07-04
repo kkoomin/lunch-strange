@@ -4,7 +4,7 @@
       <h2 class="cvs-post_title">{{ post.c_title }}</h2>
       <div class="cvs-post_info">
         <span>📝{{ post._id }}</span>
-        <span>🧑🏻‍💻{{ post.author }}</span>
+        <span>🧑🏻‍💻익명</span>
         <span>👍{{ post.c_likes }}</span>
         <span>👁{{ post.c_views }}</span>
         <span class="cvs-post_info-createdAt">⏱{{ post.createdAt }}</span>
@@ -29,7 +29,7 @@ export default {
   computed: { ...mapGetters(["post"]) },
   data() {
     return {
-      skipQuery: true
+      skipQuery: true,
     };
   },
   apollo: {
@@ -41,8 +41,8 @@ export default {
       },
       skip() {
         return this.skipQuery;
-      }
-    }
+      },
+    },
   },
   methods: {
     ...mapActions(["fetchPost"]),
@@ -54,10 +54,10 @@ export default {
         .mutate({
           mutation: deletePost,
           variables: {
-            id: id
-          }
+            id: id,
+          },
         })
-        .then(data => {
+        .then((data) => {
           console.log(data);
           if (data.data.deletePost.result) {
             alert("❗️게시글이 삭제되었습니다.");
@@ -66,7 +66,7 @@ export default {
             alert("❗️게시글을 삭제하는 도중 오류가 발생했습니다.");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     },
@@ -75,16 +75,16 @@ export default {
         .mutate({
           mutation: addLikes,
           variables: {
-            id: id
-          }
+            id: id,
+          },
         })
-        .then(post => {
+        .then((post) => {
           this.fetchPost(post.data.addLikes);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
-    }
+    },
   },
   async created() {
     console.log(location.pathname.split("/")[2]);
@@ -92,7 +92,10 @@ export default {
     this.$apollo.queries.getPost.skip = false;
     const post = await this.$apollo.queries.getPost.refetch();
     this.fetchPost(post.data.getPost);
-  }
+  },
+  beforeDestroy() {
+    this.fetchPost(null);
+  },
 };
 </script>
 

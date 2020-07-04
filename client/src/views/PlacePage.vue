@@ -1,34 +1,66 @@
 <template>
   <section class="place-page">
-    <article v-if="place" class="place-info">
-      가게 상세 페이지 (가게명, 주소 등)
-      {{place.p_name}}
-      {{place.p_description}}
-      {{place.p_menu}}
-      {{place.p_tags}}
-      <!-- <Map /> -->
-    </article>
+    <div v-if="place" class="place-wrapper">
+      <article v-if="place" class="place-container">
+        <div
+          class="place-image"
+          :style="{ 'background-image': 'url(' + place.p_img + ')' }"
+        ></div>
+
+        <div class="place-name">
+          <h1>{{ place.p_name }}</h1>
+        </div>
+
+        <div class="place-description">{{ place.p_description }}</div>
+
+        <div v-if="place.menu" class="place-menu">
+          <h2>🍴메뉴</h2>
+          <div class="place-menu-wrapper">
+            <div
+              class="place-menu-item"
+              v-for="menu in place.menu"
+              :key="menu.m_name"
+            >
+              {{ menu.m_name }}
+              {{ menu.m_price }}
+            </div>
+          </div>
+        </div>
+      </article>
+      <aside class="place-info">
+        <div class="place-address">{{ place.p_address }}</div>
+        <div class="place-phone">{{ place.p_phone }}</div>
+        <div v-if="place.tags" class="place-tags">
+          <div v-for="tag in place.tags" :key="tag">
+            {{ tag }}
+          </div>
+        </div>
+        <div v-if="place">
+          <Map :place="place" />
+        </div>
+      </aside>
+    </div>
   </section>
 </template>
 
 <script>
-// import Map from "../components/Map";
+import Map from "../components/Map";
 import { getPlace } from "../graphql/place.js";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "PlacePage",
-  // components: { Map },
+  components: { Map },
   data() {
     return {
-      skipQuery: true
+      skipQuery: true,
     };
   },
   computed: {
-    ...mapGetters(["place"])
+    ...mapGetters(["place"]),
   },
   methods: {
-    ...mapActions(["fetchPlace"])
+    ...mapActions(["fetchPlace"]),
   },
   apollo: {
     getPlace: {
@@ -39,22 +71,25 @@ export default {
       },
       skip() {
         return this.skipQuery;
-      }
-    }
+      },
+    },
   },
   async created() {
     this.$apollo.queries.getPlace.skip = false;
     const place = await this.$apollo.queries.getPlace.refetch();
     this.fetchPlace(place.data.getPlace);
     console.log(this.place);
-  }
+  },
+  beforeDestroy() {
+    this.fetchPlace(null);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../scss/main.scss";
 #map {
-  height: 400px;
-  width: 700px;
+  height: 300px;
+  width: 300px;
 }
 </style>

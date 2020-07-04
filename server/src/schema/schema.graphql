@@ -53,7 +53,7 @@ type Result {
 #####################################################
 type Mutation{
     createPost(title: String, content: String): Post
-    #updatePost(): Post
+    updatePost(id: String, title:String, content:String): Post
     deletePost(id: String): Result
     addLikes(id: String): Post
 }

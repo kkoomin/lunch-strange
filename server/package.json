@@ -9,6 +9,10 @@
     "dev": "nodemon src/server.ts --exec ts-node src/server.ts -e ts,graphql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "=12.14.1",
+    "npm": "=6.13.4"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -29,12 +33,16 @@
     "@types/express-session": "^1.17.0",
     "@types/mongoose": "^5.7.29",
     "apollo-server-express": "^2.15.0",
+    "graphql-depth-limit": "^1.1.0",
+    "graphql-import": "^1.0.2",
+    "graphql-import-node": "0.0.4",
     "axios": "^0.19.2",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "graphql": "^15.1.0",
-    "mongoose": "^5.9.20"
+    "mongoose": "^5.9.20",
+    "ncp": "^2.0.0"
   }
 }

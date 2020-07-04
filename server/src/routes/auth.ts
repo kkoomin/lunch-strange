@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
             req.session!.token = tokenResult.data
             console.log(req.session!.token);
             res.setHeader("token", tokenResult.data.access_token);
-            res.redirect("http://172.20.10.3:8080/auth?token=" + tokenResult.data.access_token);
+            res.redirect(process.env.REDIRECT_URL_LOGIN_SUCCESS + "?token=" + tokenResult.data.access_token);
         }
         
         /*if(tokenResult.data.access_token){
@@ -72,7 +72,7 @@ router.get("/logout", async (req, res) => {
         if(result.status === 200) {
             
         }*/
-        res.redirect("http://172.20.10.3:8080/auth");
+        res.redirect(process.env.REDIRECT_URL_LOGIN_SUCCESS + "");
     } catch(err) {
         console.log(err)
     }

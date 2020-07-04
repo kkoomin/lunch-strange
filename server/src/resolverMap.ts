@@ -21,8 +21,8 @@ const resolverMap: IResolvers = {
             
             // 2. select palce to calculate distance
             const distanceResult = result.filter(place => {
-                const dLat = (place.get("p_x")-currentX) * (Math.PI/180);
-                const dLon = (place.get("p_y")-currentY) * (Math.PI/180);
+                const dLat = Math.abs(place.get("p_x")-currentX) * (Math.PI/180);
+                const dLon = Math.abs(place.get("p_y")-currentY) * (Math.PI/180);
                 const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(place.get("p_x") 
                     * (Math.PI/180)) * Math.cos(currentX * (Math.PI/180)) 
                     * Math.sin(dLon/2) * Math.sin(dLon/2);
@@ -71,10 +71,20 @@ const resolverMap: IResolvers = {
          */
         getPosts: async(_: void, args: void) => {
             console.debug("Query: getPosts");
-            const result = Posts.find();
-            result.map(val => {
-                return val
+            const result = await Posts.find();
+            
+            result.forEach(post => {
+                const date = new Date(post.get("createdAt"));
+                post.set("createdAt",  
+                    date.getFullYear() + "-" 
+                            + (date.getMonth()+1 >= 10? date.getMonth()+1 : "0"+(date.getMonth()+1)) + "-"
+                            + (date.getDay() >= 10? date.getDay() : "0"+date.getDay()) + " " 
+                            + (date.getHours() >= 10? date.getHours() : "0"+date.getHours()) + ":"
+                            + (date.getMinutes() >= 10? date.getMinutes() : "0"+date.getMinutes()) + ":" 
+                            + (date.getSeconds() >= 10? date.getSeconds() : "0"+date.getSeconds())
+                , String);
             })
+
             return result;
         },
         /*
@@ -83,8 +93,18 @@ const resolverMap: IResolvers = {
         getPost: async(_: void, { id }) => {
             console.debug("Query: getPost");
             const result = await Posts.findOne({_id: id});
-            const updateResult = await Posts.findOneAndUpdate({ _id: id}, { c_views: result!.get("c_views") + 1}, {new: true})
-            
+            const updateResult = await Posts.findOneAndUpdate({ _id: id}, { c_views: result!.get("c_views") + 1}, {new: true});
+
+            const date = new Date(updateResult!.get("createdAt"));
+            updateResult!.set("createdAt",  
+                    date.getFullYear() + "-" 
+                            + (date.getMonth()+1 >= 10? date.getMonth()+1 : "0"+(date.getMonth()+1)) + "-"
+                            + (date.getDay() >= 10? date.getDay() : "0"+date.getDay()) + " " 
+                            + (date.getHours() >= 10? date.getHours() : "0"+date.getHours()) + ":"
+                            + (date.getMinutes() >= 10? date.getMinutes() : "0"+date.getMinutes()) + ":" 
+                            + (date.getSeconds() >= 10? date.getSeconds() : "0"+date.getSeconds())
+                            , String);
+
             return updateResult;
         }
     },
@@ -101,12 +121,13 @@ const resolverMap: IResolvers = {
             console.log(result);
             return result;
         },
-        /*
-        updatePost: async (root, args) => {
+        updatePost: async (root, { id, title, content }) => {
             console.debug("Mutation: updatePost");
             
+            const updateResult = await Posts.findOneAndUpdate({ _id: id}, { c_title: title, c_content: content }, {new: true})
 
-        },*/
+            return updateResult; 
+        },
         deletePost: async (root, { id }) => {
             console.debug("Mutation: deietePost");
 

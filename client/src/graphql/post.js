@@ -55,3 +55,16 @@ export const deletePost = gql`
     }
   }
 `;
+
+export const updatePost = gql`
+  mutation($title: String!, $content: String!) {
+    updatePost(title: $title, content: $content) {
+      _id
+      c_title
+      c_content
+      c_likes
+      c_views
+      createdAt
+    }
+  }
+`;

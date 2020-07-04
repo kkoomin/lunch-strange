@@ -15,7 +15,6 @@ const mutations = {
 const actions = {
   fetchPosts: ({ commit }, posts) => {
     const reversedPosts = posts.reverse();
-    console.log(reversedPosts);
     commit("setPosts", reversedPosts);
   },
   fetchPost: ({ commit }, post) => {

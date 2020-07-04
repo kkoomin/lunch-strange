@@ -1,6 +1,6 @@
 <template>
   <section class="main-page">
-    <h1>🍱 오늘은 또 뭘 먹지?</h1>
+    <h1>🍱 오늘은 뭐 먹지?</h1>
     <FilterForm />
 
     <article class="about-info">
@@ -48,8 +48,8 @@
         <div class="contact-info">
           <h1>🤙🏻 Contact Us</h1>
           <p>
-            <a href="https://github.com/kkoomin">@kkoomin</a>
-            <a href="https://github.com/EomJaeWoong">@EomJaeWoong</a>
+            <a href="https://github.com/kkoomin">✨쿠민 @kkoomin</a>
+            <a href="https://github.com/EomJaeWoong">✨웅이 @EomJaeWoong</a>
           </p>
         </div>
 

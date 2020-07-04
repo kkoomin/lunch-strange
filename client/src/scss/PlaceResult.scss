@@ -8,13 +8,16 @@
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
 
-  // .place-header {
-  //   height: 100%;
-  //   background-image: url("//img1.daumcdn.net/thumb/T800x0.q70/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fplace%2F8B211276E8F14EEF99037D982F0FA60D");
-  //   background-position: center;
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
-  // }
+  .place-header {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    // background-image: url("//img1.daumcdn.net/thumb/T800x0.q70/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fplace%2F8B211276E8F14EEF99037D982F0FA60D");
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+  }
 
   .place-name {
     margin: auto;
@@ -31,4 +34,8 @@
       margin-right: 0.5rem;
     }
   }
+}
+
+.place-detail-btn {
+  width: 8rem;
 }

@@ -1,11 +1,18 @@
 <template>
   <section class="place-page">
     <article v-if="place" class="place-info">
-      가게 상세 페이지 (가게명, 주소 등)
-      {{place.p_name}}
-      {{place.p_description}}
-      {{place.p_menu}}
-      {{place.p_tags}}
+      <div class="place-image">
+        <img :src="place.p_img" alt="place image" />
+      </div>
+      <div class="place-name">
+        {{ place.p_name }}
+      </div>
+      <div class="place-description">{{ place.p_description }}</div>
+      <div class="place-address">{{ place.p_address }}</div>
+      <div class="place-phone">{{ place.p_phone }}</div>
+      {{ place.menu }}
+      {{ place.tags }}
+
       <!-- <Map /> -->
     </article>
   </section>
@@ -21,14 +28,14 @@ export default {
   // components: { Map },
   data() {
     return {
-      skipQuery: true
+      skipQuery: true,
     };
   },
   computed: {
-    ...mapGetters(["place"])
+    ...mapGetters(["place"]),
   },
   methods: {
-    ...mapActions(["fetchPlace"])
+    ...mapActions(["fetchPlace"]),
   },
   apollo: {
     getPlace: {
@@ -39,15 +46,15 @@ export default {
       },
       skip() {
         return this.skipQuery;
-      }
-    }
+      },
+    },
   },
   async created() {
     this.$apollo.queries.getPlace.skip = false;
     const place = await this.$apollo.queries.getPlace.refetch();
     this.fetchPlace(place.data.getPlace);
     console.log(this.place);
-  }
+  },
 };
 </script>
 

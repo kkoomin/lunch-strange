@@ -70,7 +70,7 @@ export default {
   name: "MainPage",
   components: { Support, FilterForm },
   methods: {
-    ...mapActions(["setCoordsState"]),
+    ...mapActions(["setCoordsState", "finalizeLogin"]),
   },
   async created() {
     let options = {
@@ -91,6 +91,10 @@ export default {
       error,
       options
     );
+
+    if (window.location.hash !== "") {
+      this.finalizeLogin();
+    }
   },
 };
 </script>

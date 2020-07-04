@@ -23,14 +23,13 @@ const actions = {
     location.href = fullUrl;
   },
   finalizeLogin({ commit }) {
-    console.log(qs.parse(location.search.replace("?", "")));
-    const token = qs.parse(location.search.replace("?", "")).token;
+    const token = qs.parse(location.hash.replace("#", "")).token;
+    console.log(token);
     if (token) {
       cookies.set("k_token", token);
       commit("setToken", token);
-      // commit("getUserInfo", token)
+      commit("getUserInfo", token);
     }
-    // window.location.href = "https://lunch-strange.netlify.app/";
     router.push("/");
   },
   async getUserInfo(token) {

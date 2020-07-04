@@ -46,6 +46,9 @@
         <button class="main-btn" @click="handleUpdateSubmit(post._id)">
           수정 완료
         </button>
+        <button class="small-btn" @click="handleListClick">목록</button>
+
+        <button class="small-btn" @click="handleUpdateOn">수정 취소</button>
       </div>
     </div>
   </section>
@@ -90,11 +93,11 @@ export default {
       this.content = this.post.c_content;
     },
     handleUpdateSubmit(id) {
-      console.log(id);
       this.$apollo
         .mutate({
           mutation: updatePost,
           variables: {
+            id: id,
             title: this.title,
             content: this.content,
           },

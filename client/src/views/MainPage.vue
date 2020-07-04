@@ -47,7 +47,10 @@
       <div class="about-info__contact-us">
         <div class="contact-info">
           <h1>🤙🏻 Contact Us</h1>
-          <p>@kkoomin, @EomJaeWoong</p>
+          <p>
+            <a href="https://github.com/kkoomin">@kkoomin</a>
+            <a href="https://github.com/EomJaeWoong">@EomJaeWoong</a>
+          </p>
         </div>
 
         <div class="contact-form">

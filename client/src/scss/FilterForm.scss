@@ -189,7 +189,8 @@
 
 // 태그형 input 선택
 .price-tag,
-.distance-tag {
+.distance-tag,
+.current-location-tag {
   font-family: "Cookie", sans-serif;
 
   cursor: pointer;
@@ -203,6 +204,11 @@
     background-repeat: no-repeat;
     background-size: 100% 2px;
   }
+}
+
+.current-location-title {
+  font-family: "SSM", sans-serif;
+  font-size: 1.1rem;
 }
 
 .buffet-incl-btn {

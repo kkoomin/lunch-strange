@@ -32,6 +32,8 @@
           </li>
         </ul>
       </nav>
+
+      <!-- Input Container -->
       <div class="form-input">
         <div v-if="formInputField === 'price'">
           <input
@@ -59,6 +61,34 @@
         </div>
 
         <div v-else-if="formInputField === 'distance'">
+          <span class="current-location-title">📍현재 위치 설정 :</span>
+          <span
+            class="current-location-tag"
+            @click="
+              handleCurrentLocationSet(127.039604663862, 37.5012860931305)
+            "
+            >#멀티캠퍼스 역삼</span
+          >
+          <span
+            class="current-location-tag"
+            @click="handleCurrentLocationSet(127.03646946847, 37.5006744185994)"
+            >#역삼역</span
+          >
+          <span
+            class="current-location-tag"
+            @click="
+              handleCurrentLocationSet(127.028000275071, 37.4980854357918)
+            "
+            >#강남역</span
+          >
+          <span
+            class="current-location-tag"
+            @click="
+              handleCurrentLocationSet(127.033745694938, 37.4994498598132)
+            "
+            >#포스코타워 역삼</span
+          >
+
           <input
             class="line-input"
             type="number"
@@ -107,6 +137,7 @@
       </div>
     </div>
 
+    <!-- 결과 Container -->
     <div
       v-if="price || distance || category"
       class="form-input-result-container"
@@ -149,6 +180,8 @@ export default {
   components: { Multiselect },
   data() {
     return {
+      ...mapGetters(["getCurrentX", "getCurrentY"]),
+
       isActive: true,
       formInputField: "price",
       getFilteredPlaces: null,
@@ -158,8 +191,7 @@ export default {
       distance: null,
       category: null,
       checked: false,
-      //
-      ...mapGetters(["getCurrentX", "getCurrentY"]),
+      // multiselect options
       options: [
         { name: "한식", value: "한식" },
         { name: "양식", value: "양식" },
@@ -196,7 +228,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["fetchFilteredPlaces", "getFilterValues"]),
+    ...mapActions(["fetchFilteredPlaces", "getFilterValues", "setCoordsState"]),
+    handleCurrentLocationSet(x, y) {
+      this.setCoordsState({ longitude: x, latitude: y });
+    },
     handleFieldChange(field) {
       this.formInputField = field;
     },

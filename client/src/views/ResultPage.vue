@@ -1,5 +1,5 @@
 <template>
-  <section v-if="allPlaces()" class="result-page">
+  <section class="result-page">
     <header>
       <div class="filter-result">
         <span>#{{ this.$store.state.filter.price }}원</span>
@@ -18,7 +18,10 @@
       </div>
     </header>
 
-    <article class="result-container">
+    <article
+      v-if="allPlaces() && allPlaces().length > 0"
+      class="result-container"
+    >
       <!-- List -->
       <article class="list-container">
         <PlaceResult
@@ -31,6 +34,10 @@
       <article class="map-container">
         <Map />
       </article>
+    </article>
+
+    <article v-else>
+      <h1>해당 필터에 맞는 음식점이 없습니다 😢</h1>
     </article>
   </section>
 </template>

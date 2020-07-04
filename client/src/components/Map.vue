@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       map: null,
-      marker: null
+      marker: null,
     };
   },
   methods: {
@@ -31,7 +31,7 @@ export default {
       let container = document.getElementById("map");
       let options = {
         center: new kakao.maps.LatLng(37.501286, 127.039604), // 지도의 중심 좌표 y, x
-        level: 3
+        level: 3,
       };
       this.map = new kakao.maps.Map(container, options);
       // 지도를 생성합니다
@@ -53,7 +53,7 @@ export default {
         // 마커를 생성합니다
         var marker = new kakao.maps.Marker({
           map: this.map, // 마커를 표시할 지도
-          position: new kakao.maps.LatLng(positions[i].p_y, positions[i].p_x) // 마커를 표시할 위치
+          position: new kakao.maps.LatLng(positions[i].p_y, positions[i].p_x), // 마커를 표시할 위치
           // title: positions[i].title // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
           // image: markerImage // 마커 이미지
         });
@@ -65,8 +65,8 @@ export default {
       //   position: markerPosition
       // });
       // marker.setMap(this.map);
-    }
-  }
+    },
+  },
 };
 </script>
 

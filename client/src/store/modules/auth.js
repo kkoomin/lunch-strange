@@ -31,7 +31,7 @@ const actions = {
     }
   },
   async getUserInfo(context, token) {
-    const result = axios.post(
+    const result = await axios.post(
       `${process.env.VUE_APP_SERVER_URL}auth/getUserInfo`,
       { token }
     );

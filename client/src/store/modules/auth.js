@@ -22,13 +22,13 @@ const actions = {
     const fullUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_app_key}&redirect_uri=${redirect_uri}&response_type=code`;
     location.href = fullUrl;
   },
-  finalizeLogin({ commit }) {
+  finalizeLogin({ commit, dispatch }) {
     const token = qs.parse(location.hash.replace("#", "")).token;
     console.log(token);
     if (token) {
       cookies.set("k_token", token);
       commit("setToken", token);
-      commit("getUserInfo", token);
+      dispatch("getUserInfo", token);
     }
     router.push("/");
   },
@@ -37,7 +37,8 @@ const actions = {
       `${process.env.VUE_APP_SERVER_URL}auth/getUserInfo`,
       { token }
     );
-    console.log(result);
+    console.log(result.data);
+    alert(result.data.u_nickname);
   },
 };
 

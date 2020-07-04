@@ -1,5 +1,5 @@
 import qs from "qs";
-import router from "@/router";
+// import router from "@/router";
 import cookies from "vue-cookies";
 import axios from "axios";
 
@@ -22,15 +22,13 @@ const actions = {
     const fullUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_app_key}&redirect_uri=${redirect_uri}&response_type=code`;
     location.href = fullUrl;
   },
-  finalizeLogin({ commit, dispatch }) {
+  finalizeLogin({ commit }) {
     const token = qs.parse(location.hash.replace("#", "")).token;
     console.log(token);
     if (token) {
       cookies.set("k_token", token);
       commit("setToken", token);
-      dispatch("getUserInfo", token);
     }
-    router.push("/");
   },
   async getUserInfo(token) {
     const result = axios.post(

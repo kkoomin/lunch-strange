@@ -16,7 +16,9 @@
       <!-- info bar -->
       <div class="cvs-post_info">
         <!-- <span>📝{{ post._id }}</span> -->
-        <span>🧑🏻‍💻{{ post.c_author }} </span>
+        <span v-if="post.c_author"
+          >🧑🏻‍💻{{ changeAuthorFormat(post.c_author) }}
+        </span>
         <span>👍{{ post.c_likes }}</span>
         <span>👁{{ post.c_views }}</span>
         <span class="cvs-post_info-createdAt">⏱{{ post.createdAt }}</span>
@@ -84,6 +86,10 @@ export default {
   },
   methods: {
     ...mapActions(["fetchPost"]),
+    changeAuthorFormat(author) {
+      const id = author.split("@")[0];
+      return "*".repeat(id.split("").length - 5) + id.slice(-5);
+    },
     handleListClick() {
       router.push("/cvs");
     },

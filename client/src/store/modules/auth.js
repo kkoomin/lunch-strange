@@ -25,6 +25,9 @@ const actions = {
       commit("setToken", token);
     }
   },
+  keepLogin({ commit }, token) {
+    commit("setToken", token);
+  },
   finalizeLogout({ commit }) {
     cookies.remove("k_token");
     cookies.remove("u_nickname");

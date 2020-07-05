@@ -232,4 +232,9 @@
   border-color: $orange;
   background-color: $orange;
   color: $ivory;
+  &:hover {
+    border-color: $orange;
+    background-color: $orange;
+    color: $ivory;
+  }
 }

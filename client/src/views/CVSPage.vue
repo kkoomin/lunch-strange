@@ -7,7 +7,6 @@
         <tr>
           <th>글번호</th>
           <th>제목</th>
-          <th>작성자</th>
           <th>날짜</th>
           <th>좋아요</th>
           <th>조회수</th>
@@ -19,7 +18,6 @@
           <td class="post-title" @click="handleReadClick(post._id)">
             {{ post.c_title }}
           </td>
-          <td class="post-author">익명</td>
           <td class="post-createdAt">{{ post.createdAt }}</td>
           <td class="post-likes">{{ post.c_likes }}</td>
           <td class="post-views">{{ post.c_views }}</td>
@@ -36,13 +34,20 @@
 import router from "@/router";
 import { mapGetters, mapActions } from "vuex";
 import { getPosts } from "../graphql/post.js";
+import cookies from "vue-cookies";
 
 export default {
   name: "CVSPage",
   methods: {
     ...mapGetters(["allPosts"]),
     ...mapActions(["fetchPosts"]),
-    handleWriteClick: () => router.push("/cvs/write"),
+    handleWriteClick: () => {
+      if (cookies.get("u_id")) {
+        router.push("/cvs/write");
+      } else {
+        alert("로그인이 필요한 기능입니다.");
+      }
+    },
     handleReadClick: (id) =>
       router.push({ name: "CVSReadPage", params: { id } }),
   },

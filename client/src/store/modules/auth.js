@@ -1,5 +1,4 @@
 import qs from "qs";
-// import router from "@/router";
 import cookies from "vue-cookies";
 import axios from "axios";
 
@@ -32,6 +31,8 @@ const actions = {
   },
   finalizeLogout({ commit }) {
     cookies.remove("k_token");
+    cookies.remove("u_nickname");
+    cookies.remove("u_id");
     commit("setToken", null);
     alert("👋🏻 로그아웃되었습니다!");
   },
@@ -41,7 +42,8 @@ const actions = {
       { token }
     );
     console.log(result);
-    alert(result.data.u_nickname);
+    cookies.set("u_nickname", result.data.u_nickname);
+    cookies.set("u_id", result.data.u_id);
   },
 };
 

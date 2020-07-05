@@ -8,7 +8,7 @@ const getters = { isLoggedIn: (state) => !!state.token };
 const mutations = { setToken: (state, token) => (state.token = token) };
 const actions = {
   logout: () => {
-    const token = cookies.get("k_token");
+    // const token = cookies.get("k_token");
 
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
     const redirect_uri = `${process.env.VUE_APP_SERVER_URL}auth/logout`;

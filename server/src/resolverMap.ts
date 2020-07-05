@@ -14,15 +14,28 @@ const resolverMap: IResolvers = {
             distance, checked, currentX, currentY }) => {
             console.debug("Query: getFilteredPlace");
             const earthR = 6371;
+            
+            const CATEGORY = ["한식", "양식", "중식", "일식", "분식"];
 
+            let result;
             // 1. query mongodb with category
-            // cons categoryResult = await Places.find({p_category: ?})
-            const result = await Places.find();
+            if(category.includes("기타")){
+                const filteredCategory = CATEGORY.filter((cate, index) => {
+                    if(category.includes(cate))
+                        return false;
+                    else
+                        return true; 
+                })
+
+                result = await Places.find({ p_category: { $nin: filteredCategory }});
+            }
+            else 
+                result = await Places.find({ p_category: { $in: category } });
             
             // 2. select palce to calculate distance
             const distanceResult = result.filter(place => {
-                const dLat = (place.get("p_x")-currentX) * (Math.PI/180);
-                const dLon = (place.get("p_y")-currentY) * (Math.PI/180);
+                const dLat = Math.abs(place.get("p_x")-currentX) * (Math.PI/180);
+                const dLon = Math.abs(place.get("p_y")-currentY) * (Math.PI/180);
                 const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(place.get("p_x") 
                     * (Math.PI/180)) * Math.cos(currentX * (Math.PI/180)) 
                     * Math.sin(dLon/2) * Math.sin(dLon/2);
@@ -43,9 +56,6 @@ const resolverMap: IResolvers = {
 
                     return Number(price) >= Number(iPrice)  
                 })
-                
-                //console.log(filteredMenu);
-                //console.log(filteredMenu.length);
 
                 // 가격에 맞는 메뉴가 없으면 지움
                 if(!filteredMenu.length)
@@ -60,7 +70,7 @@ const resolverMap: IResolvers = {
             return dmResult;
         },
         getPlace: async (_:void, { id }) => {
-            console.debug("Query: getPlace");
+            console.log("Query: getPlace");
             const result = await Places.findOne({ p_id: id });
 
             console.log(result);
@@ -70,11 +80,9 @@ const resolverMap: IResolvers = {
          * getPosts Query
          */
         getPosts: async(_: void, args: void) => {
-            console.debug("Query: getPosts");
-            const result = Posts.find();
-            result.map(val => {
-                return val
-            })
+            console.log("Query: getPosts");
+            const result = await Posts.find();
+
             return result;
         },
         /*
@@ -83,40 +91,51 @@ const resolverMap: IResolvers = {
         getPost: async(_: void, { id }) => {
             console.debug("Query: getPost");
             const result = await Posts.findOne({_id: id});
-            const updateResult = await Posts.findOneAndUpdate({ _id: id}, { c_views: result!.get("c_views") + 1}, {new: true})
-            
+            const updateResult = await Posts.findOneAndUpdate({ _id: id}, { c_views: result!.get("c_views") + 1}, {new: true});
+
+            const date = new Date(updateResult!.get("createdAt"));
+
             return updateResult;
         }
     },
     Mutation: {
         createPost: async (root, args) => {
-            console.debug("Mutation: createPost");
+            console.log("Mutation: createPost");
 
             const Post = new Posts({
                 c_title: args.title,
                 c_content: args.content,
+                c_author: args.author,
             });
             
             const result = await Post.save();
             console.log(result);
             return result;
         },
-        /*
         updatePost: async (root, args) => {
-            console.debug("Mutation: updatePost");
+            console.log("Mutation: updatePost");
             
+            const updateResult = await Posts.findOneAndUpdate({ _id: args.id, c_author: args.author}, { c_title: args.title, c_content: args.content }, {new: true})
 
-        },*/
-        deletePost: async (root, { id }) => {
-            console.debug("Mutation: deietePost");
+            console.log(updateResult)
+            if(updateResult)
+                return { result: true };
+            else 
+                return { result: false };
+        },
+        deletePost: async (root, args) => {
+            console.log("Mutation: deietePost");
 
-            const result = await Posts.findOneAndDelete({ _id: id });
-            console.log(result);
-
-            return { result: true };
+            const result = await Posts.findOneAndDelete({ _id: args.id, c_author: args.author });
+            
+            console.log
+            if(result)
+                return { result: true };
+            else 
+                return { result: false };
         },
         addLikes: async (root, { id }) => {
-            console.debug("Mutation: addLikes");
+            console.log("Mutation: addLikes");
 
             const result = await Posts.findOne({ _id: id });
             const likeResult = await Posts.findOneAndUpdate({ _id: id}, { c_likes: result!.get("c_likes") + 1}, {new: true})

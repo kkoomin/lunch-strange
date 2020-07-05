@@ -112,7 +112,18 @@
     font-family: "SSM", sans-serif;
     font-size: 1.1rem;
     color: $black;
-    margin: 0 3px;
+    margin: 0 5px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      display: block;
+      margin: 5px auto;
+    }
   }
 }
 

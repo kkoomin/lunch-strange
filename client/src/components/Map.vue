@@ -4,6 +4,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import router from "@/router";
 
 export default {
   props: ["place"],
@@ -75,8 +76,16 @@ export default {
           position: new kakao.maps.LatLng(positions[i].p_y, positions[i].p_x),
           title: positions[i].p_name,
         });
+        const id = positions[i].p_id;
+        marker.setMap(this.map); // 마커 생성
+
+        kakao.maps.event.addListener(marker, "click", function() {
+          router.push({
+            name: "PlacePage",
+            params: { id },
+          });
+        });
       }
-      marker.setMap(this.map); // 마커 생성
     },
   },
 };

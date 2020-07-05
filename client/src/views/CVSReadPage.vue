@@ -167,6 +167,7 @@ export default {
     this.$apollo.queries.getPost.skip = false;
     const post = await this.$apollo.queries.getPost.refetch();
     this.fetchPost(post.data.getPost);
+    this.author = cookies.get("u_id");
   },
   beforeDestroy() {
     this.fetchPost(null);

@@ -42,7 +42,7 @@ export default {
           variables: {
             title: this.title,
             content: this.content,
-            author: this.author,
+            author: cookies.get("u_id"),
           },
         })
         .then(() => {
@@ -56,7 +56,6 @@ export default {
     },
   },
   created() {
-    console.log(cookies.get("u_id"));
     this.author = cookies.get("u_id");
   },
 };

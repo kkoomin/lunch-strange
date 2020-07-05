@@ -97,7 +97,7 @@ export default {
     );
 
     // 로그인 처리 이후 리다이렉트 됐을 경우
-    if (window.location.hash !== "") {
+    if (qs.parse(location.hash.replace("#", "")).token) {
       this.finalizeLogin();
       const token = cookies.get("k_token");
       this.getUserInfo(token);

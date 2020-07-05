@@ -11,8 +11,8 @@ const actions = {
     const token = cookies.get("k_token");
 
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
-    const redirect_uri = `${process.env.VUE_APP_SERVER_URL}auth/logout?token=${token}`;
-
+    const redirect_uri = `${process.env.VUE_APP_SERVER_URL}auth/logout`;
+    // #token=${token}
     const fullUrl = `https://kauth.kakao.com/oauth/logout?client_id=${kakao_app_key}&logout_redirect_uri=${redirect_uri}`;
     location.href = fullUrl;
   },

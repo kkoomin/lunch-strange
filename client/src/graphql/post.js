@@ -26,6 +26,7 @@ export const getPost = gql`
   query getPost($id: String!) {
     getPost(id: $id) {
       _id
+      c_author
       c_title
       c_content
       c_likes

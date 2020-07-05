@@ -155,17 +155,20 @@
         >
       </div>
 
-      <button class="main-btn filter-submit-btn" @click.prevent="handleSubmit">
-        오늘은 여기서 먹는다!
-      </button>
-    </div>
+      <div>
+        <button v-if="loading" class="main-btn loading">
+          🍱 음식점 로딩 중...
+        </button>
 
-    <!-- 로딩 안내 -->
-    <!-- <div class="modal" @click.self="$emit('toggleModal')">
-      <div class="modal-content">
-        <img class="menu-image" :src="img" alt="menu image" />
+        <button
+          v-else
+          class="main-btn filter-submit-btn"
+          @click.prevent="handleSubmit"
+        >
+          오늘은 여기서 먹는다!
+        </button>
       </div>
-    </div>-->
+    </div>
   </article>
 </template>
 
@@ -186,6 +189,7 @@ export default {
       formInputField: "price",
       getFilteredPlaces: null,
       skipQuery: true,
+      loading: false,
       // filter input
       price: null,
       distance: null,
@@ -246,10 +250,13 @@ export default {
           checked: this.checked,
         });
 
+        this.loading = true;
+
         // graphql query 실행
         this.$apollo.queries.getFilteredPlaces.skip = false;
         const places = await this.$apollo.queries.getFilteredPlaces.refetch();
-        console.log(places);
+
+        // console.log(places);
 
         // graphql query return값 state 저장
         this.fetchFilteredPlaces(places.data.getFilteredPlaces);
@@ -257,7 +264,7 @@ export default {
         // result 페이지로 이동
         router.push({ name: "ResultPage" });
       } else {
-        alert("⚠️ 필터를 마저 설정해주세요.");
+        alert("❗️필터를 마저 설정해주세요.");
       }
     },
     handleBuffetIncl() {

@@ -7,11 +7,8 @@ const getters = { isLoggedIn: (state) => !!state.token };
 const mutations = { setToken: (state, token) => (state.token = token) };
 const actions = {
   logout: () => {
-    // const token = cookies.get("k_token");
-
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
     const redirect_uri = `${process.env.VUE_APP_SERVER_URL}auth/logout`;
-    // #token=${token}
     const fullUrl = `https://kauth.kakao.com/oauth/logout?client_id=${kakao_app_key}&logout_redirect_uri=${redirect_uri}`;
     location.href = fullUrl;
   },
@@ -23,7 +20,6 @@ const actions = {
   },
   finalizeLogin({ commit }) {
     const token = qs.parse(location.hash.replace("#", "")).token;
-    console.log(token);
     if (token) {
       cookies.set("k_token", token);
       commit("setToken", token);
@@ -41,9 +37,9 @@ const actions = {
       `${process.env.VUE_APP_SERVER_URL}auth/getUserInfo`,
       { token }
     );
-    console.log(result);
     cookies.set("u_nickname", result.data.u_nickname);
     cookies.set("u_id", result.data.u_id);
+    alert(`✨ ${result.data.u_nickname}님, 환영합니다 ✨`);
   },
 };
 

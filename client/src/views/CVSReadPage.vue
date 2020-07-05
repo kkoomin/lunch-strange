@@ -47,7 +47,6 @@
           수정 완료
         </button>
         <button class="small-btn" @click="handleListClick">목록</button>
-
         <button class="small-btn" @click="handleUpdateOn">수정 취소</button>
       </div>
     </div>
@@ -69,7 +68,6 @@ export default {
       skipQuery: true,
       title: "",
       content: "",
-      author: "",
     };
   },
   apollo: {
@@ -95,7 +93,6 @@ export default {
       this.content = this.post.c_content;
     },
     handleUpdateSubmit(id) {
-      if (cookies.get("u_id")) this.author = cookies.get("u_id");
       this.$apollo
         .mutate({
           mutation: updatePost,
@@ -120,8 +117,6 @@ export default {
         });
     },
     handleDelete(id) {
-      if (cookies.get("u_id")) this.author = cookies.get("u_id");
-
       if (window.confirm("❗️해당 게시글을 삭제하시겠습니까?")) {
         this.$apollo
           .mutate({

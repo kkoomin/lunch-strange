@@ -6,6 +6,10 @@ const PlaceSchema = new Schema({
         type: String,
         required: true,
     },
+    p_category: {
+        type: String,
+        required: true,
+    },
     p_name: {
         type: String,
         required: true,

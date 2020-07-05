@@ -69,6 +69,7 @@ export default {
       skipQuery: true,
       title: "",
       content: "",
+      author: "",
     };
   },
   apollo: {
@@ -94,6 +95,7 @@ export default {
       this.content = this.post.c_content;
     },
     handleUpdateSubmit(id) {
+      if (cookies.get("u_id")) this.author = cookies.get("u_id");
       this.$apollo
         .mutate({
           mutation: updatePost,
@@ -101,7 +103,7 @@ export default {
             id: id,
             title: this.title,
             content: this.content,
-            author: cookies.get("u_id"),
+            author: this.author,
           },
         })
         .then((data) => {
@@ -118,13 +120,15 @@ export default {
         });
     },
     handleDelete(id) {
+      if (cookies.get("u_id")) this.author = cookies.get("u_id");
+
       if (window.confirm("❗️해당 게시글을 삭제하시겠습니까?")) {
         this.$apollo
           .mutate({
             mutation: deletePost,
             variables: {
               id: id,
-              author: cookies.get("u_id"),
+              author: this.author,
             },
           })
           .then((data) => {

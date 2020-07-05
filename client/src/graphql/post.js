@@ -41,6 +41,7 @@ export const addLikes = gql`
     addLikes(id: $id) {
       _id
       c_title
+      c_author
       c_content
       c_likes
       c_views

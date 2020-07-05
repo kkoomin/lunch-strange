@@ -79,7 +79,6 @@ export default {
     this.$apollo.queries.getPlace.skip = false;
     const place = await this.$apollo.queries.getPlace.refetch();
     this.fetchPlace(place.data.getPlace);
-    console.log(this.place);
   },
   beforeDestroy() {
     this.fetchPlace(null);

@@ -222,7 +222,6 @@ export default {
           currentY: this.getCurrentY().toString(),
         };
 
-        console.log(filters);
         return filters;
       },
       skip() {
@@ -255,8 +254,6 @@ export default {
         // graphql query 실행
         this.$apollo.queries.getFilteredPlaces.skip = false;
         const places = await this.$apollo.queries.getFilteredPlaces.refetch();
-
-        // console.log(places);
 
         // graphql query return값 state 저장
         this.fetchFilteredPlaces(places.data.getFilteredPlaces);

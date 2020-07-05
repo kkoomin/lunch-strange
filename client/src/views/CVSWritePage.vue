@@ -30,6 +30,7 @@ export default {
     return {
       title: "",
       content: "",
+      author: "",
       skipQuery: true,
     };
   },
@@ -41,7 +42,7 @@ export default {
           variables: {
             title: this.title,
             content: this.content,
-            author: cookies.get("u_id"),
+            author: this.author,
           },
         })
         .then(() => {
@@ -53,6 +54,10 @@ export default {
           alert("글 작성에 실패했습니다!");
         });
     },
+  },
+  created() {
+    console.log(cookies.get("u_id"));
+    this.author = cookies.get("u_id");
   },
 };
 </script>

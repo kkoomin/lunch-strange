@@ -7,7 +7,7 @@ const state = { token: null };
 const getters = { isLoggedIn: (state) => !!state.token };
 const mutations = { setToken: (state, token) => (state.token = token) };
 const actions = {
-  logout: ({ commit }) => {
+  logout: () => {
     const token = cookies.get("k_token");
 
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
@@ -29,6 +29,11 @@ const actions = {
       cookies.set("k_token", token);
       commit("setToken", token);
     }
+  },
+  finalizeLogout({ commit }) {
+    cookies.remove("k_token");
+    commit("setToken", null);
+    alert("👋🏻 로그아웃되었습니다!");
   },
   async getUserInfo(context, token) {
     const result = await axios.post(

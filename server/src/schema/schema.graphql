@@ -14,6 +14,7 @@ type Query{
 # Place
 type Place {
   p_description: String,
+  p_category: String,
   p_img: String,
   menu: [menu],
   tags: [ String ],
@@ -40,6 +41,7 @@ type Post{
     _id: ID,
     c_title: String,
     c_content: String,
+    c_author: String,
     c_likes: Int,
     c_views: Int,
     createdAt: String,
@@ -52,8 +54,8 @@ type Result {
 # Mutation
 #####################################################
 type Mutation{
-    createPost(title: String, content: String): Post
-    #updatePost(): Post
-    deletePost(id: String): Result
+    createPost(title: String, content: String, author: String): Post
+    updatePost(id: String, title:String, content:String, author: String): Result
+    deletePost(id: String, author: String): Result
     addLikes(id: String): Post
 }

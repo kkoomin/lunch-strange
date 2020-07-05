@@ -73,7 +73,12 @@ export default {
   name: "MainPage",
   components: { Support, FilterForm },
   methods: {
-    ...mapActions(["setCoordsState", "finalizeLogin", "getUserInfo"]),
+    ...mapActions([
+      "setCoordsState",
+      "finalizeLogin",
+      "finalizeLogout",
+      "getUserInfo",
+    ]),
   },
   async created() {
     // geolocation API로 현위치 잡기
@@ -106,9 +111,7 @@ export default {
 
     // 로그아웃 처리 이후 리다이렉트 됐을 경우
     if (qs.parse(location.hash.replace("#", "")).state === "logout") {
-      cookies.remove("k_token");
-      commit("setToken", null);
-      alert9("👋🏻 로그아웃되었습니다!");
+      this.finalizeLogout();
     }
   },
 };

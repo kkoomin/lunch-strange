@@ -22,17 +22,21 @@
       v-if="allPlaces() && allPlaces().length > 0"
       class="result-container"
     >
-      <!-- List -->
-      <article class="list-container">
-        <PlaceResult
-          v-for="place in allPlaces()"
-          v-bind:key="place.p_name"
-          :place="place"
-        />
-      </article>
       <!-- Map -->
       <article class="map-container">
         <Map />
+      </article>
+
+      <!-- List -->
+      <article class="list-container">
+        <PlaceResult
+          v-for="place in renderedPlaces(renderNumber)"
+          v-bind:key="place.p_name"
+          :place="place"
+        />
+        <button class="main-btn" @click="addRenderedPlace">
+          필터링 결과 더보기
+        </button>
       </article>
     </article>
 
@@ -51,8 +55,20 @@ export default {
   name: "ResultPage",
   components: { PlaceResult, Map },
   computed: mapState(["price", "distance", "category", "checked"]),
-  methods: { ...mapGetters(["allPlaces"]) },
-
+  methods: {
+    ...mapGetters(["allPlaces"]),
+    addRenderedPlace() {
+      this.renderNumber += 5;
+    },
+  },
+  data() {
+    return {
+      renderNumber: 5,
+      renderedPlaces(num) {
+        return this.allPlaces().slice(0, num);
+      },
+    };
+  },
   created() {
     this.allPlaces();
   },

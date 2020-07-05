@@ -42,7 +42,7 @@ export default {
           price: "6,000원",
           location: "역삼역",
           type: "구내식당",
-          img: "https://i.imgur.com/8dqWGYs.png",
+          img: "https://i.imgur.com/hFOwYbx.jpg",
           thumbnail: "https://i.imgur.com/kIagFsb.jpg?1",
         },
         {

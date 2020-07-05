@@ -16,7 +16,7 @@
       <!-- info bar -->
       <div class="cvs-post_info">
         <!-- <span>📝{{ post._id }}</span> -->
-        <span>🧑🏻‍💻{{ post.author }} </span>
+        <span>🧑🏻‍💻{{ post.c_author }} </span>
         <span>👍{{ post.c_likes }}</span>
         <span>👁{{ post.c_views }}</span>
         <span class="cvs-post_info-createdAt">⏱{{ post.createdAt }}</span>
@@ -103,11 +103,11 @@ export default {
             id: id,
             title: this.title,
             content: this.content,
-            author: this.author,
+            author: cookies.get("u_id"),
           },
         })
         .then((data) => {
-          if (data.data.updatePost.result) {
+          if (data.data.updatePost.result == "true") {
             alert("글 수정이 완료되었습니다!");
             router.push({ name: "CVSPage" });
           } else {
@@ -128,12 +128,12 @@ export default {
             mutation: deletePost,
             variables: {
               id: id,
-              author: this.author,
+              author: cookies.get("u_id"),
             },
           })
           .then((data) => {
             console.log(data);
-            if (data.data.deletePost.result) {
+            if (data.data.deletePost.result == "true") {
               alert("❗️게시글이 삭제되었습니다.");
               router.push("/cvs");
             } else {
@@ -167,7 +167,6 @@ export default {
     this.$apollo.queries.getPost.skip = false;
     const post = await this.$apollo.queries.getPost.refetch();
     this.fetchPost(post.data.getPost);
-    this.author = cookies.get("u_id");
   },
   beforeDestroy() {
     this.fetchPost(null);

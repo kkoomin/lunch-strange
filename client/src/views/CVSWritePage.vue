@@ -55,9 +55,6 @@ export default {
         });
     },
   },
-  created() {
-    this.author = cookies.get("u_id");
-  },
 };
 </script>
 

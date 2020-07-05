@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import moment from 'moment';
 
 const { Schema } = mongoose;
 const PostSchema = new Schema({
@@ -7,6 +8,10 @@ const PostSchema = new Schema({
         required: true,
     },
     c_content: {
+        type: String,
+        required: true,
+    },
+    c_author: {
         type: String,
         required: true,
     },
@@ -19,8 +24,8 @@ const PostSchema = new Schema({
         default: 0,
     },
     createdAt: {
-        type: Date,
-        default: new Date(),
+        type: String,
+        default: moment(new Date()).format("YYYY-MM-DD HH:MM:SS"),
     }
 });
 

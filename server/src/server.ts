@@ -33,16 +33,26 @@ const server = new ApolloServer({
   validationRules: [depthLimit(7)],
 });
 
-app.use('*', cors());
+const corsOptions = {
+  origin: true,			// 헤더 요청 구성, true값은 요청 origin 반영
+  credentials: true		// 헤더를 전달하려면 true
+}
+
+app.use(cors(corsOptions));
 app.use(compression());
 app.use(express.json());
 
-server.applyMiddleware({ app, path: '/graphql' });
+server.applyMiddleware({ 
+  app, 
+  path: '/graphql',
+  cors: {
+    origin: "*"
+  } });
 
 app.use("/auth", auth);
 
 const httpServer = createServer(app);
 httpServer.listen(
-  { port: process.env.SERVER_PORT || 8000 },
+  { port: process.env.PORT || 8000 },
   (): void => console.log(`server Start`)
 );

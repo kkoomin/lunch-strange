@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
-const PlaceSchema = new Schema({
+const UserSchema = new Schema({
     u_id: {
         type: String,
         required: true,
     },
-    u_password: {
+    u_token: {
         type: String,
-        required: true,
     },
     u_nickname: {
         type: String,
@@ -16,4 +15,4 @@ const PlaceSchema = new Schema({
     },
 });
 
-export default mongoose.model("Place", PlaceSchema, "Place");
+export default mongoose.model("User", UserSchema, "User");

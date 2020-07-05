@@ -22,6 +22,7 @@
 <script>
 import router from "@/router";
 import { createPost } from "../graphql/post.js";
+import cookies from "vue-cookies";
 
 export default {
   name: "CVSWritePage",
@@ -40,6 +41,7 @@ export default {
           variables: {
             title: this.title,
             content: this.content,
+            author: cookies.get("u_id"),
           },
         })
         .then(() => {

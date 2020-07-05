@@ -15,8 +15,8 @@
       </div>
       <!-- info bar -->
       <div class="cvs-post_info">
-        <span>📝{{ post._id }}</span>
-        <span>🧑🏻‍💻익명</span>
+        <!-- <span>📝{{ post._id }}</span> -->
+        <span>🧑🏻‍💻{{ post.author }} </span>
         <span>👍{{ post.c_likes }}</span>
         <span>👁{{ post.c_views }}</span>
         <span class="cvs-post_info-createdAt">⏱{{ post.createdAt }}</span>
@@ -58,6 +58,7 @@
 import router from "@/router";
 import { addLikes, getPost, deletePost, updatePost } from "../graphql/post.js";
 import { mapGetters, mapActions } from "vuex";
+import cookies from "vue-cookies";
 
 export default {
   name: "CVSReadPage",
@@ -100,11 +101,16 @@ export default {
             id: id,
             title: this.title,
             content: this.content,
+            author: cookies.get("u_id"),
           },
         })
-        .then(() => {
-          alert("글 수정이 완료되었습니다!");
-          router.push({ name: "CVSPage" });
+        .then((data) => {
+          if (data.data.updatePost.result) {
+            alert("글 수정이 완료되었습니다!");
+            router.push({ name: "CVSPage" });
+          } else {
+            alert("❗️게시글 수정에 실패했습니다.");
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -118,6 +124,7 @@ export default {
             mutation: deletePost,
             variables: {
               id: id,
+              author: cookies.get("u_id"),
             },
           })
           .then((data) => {
@@ -126,7 +133,7 @@ export default {
               alert("❗️게시글이 삭제되었습니다.");
               router.push("/cvs");
             } else {
-              alert("❗️게시글을 삭제하는 도중 오류가 발생했습니다.");
+              alert("❗️게시글 삭제에 실패했습니다.");
             }
           })
           .catch((error) => {

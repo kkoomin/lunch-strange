@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const createPost = gql`
-  mutation($title: String!, $content: String!) {
-    createPost(title: $title, content: $content) {
+  mutation($title: String!, $content: String!, $author: String!) {
+    createPost(title: $title, content: $content, author: $author) {
       c_title
       c_content
     }
@@ -49,22 +49,17 @@ export const addLikes = gql`
 `;
 
 export const deletePost = gql`
-  mutation($id: String!) {
-    deletePost(id: $id) {
+  mutation($id: String!, $author: String!) {
+    deletePost(id: $id, author: $author) {
       result
     }
   }
 `;
 
 export const updatePost = gql`
-  mutation($id: String!, $title: String!, $content: String!) {
-    updatePost(id: $id, title: $title, content: $content) {
-      _id
-      c_title
-      c_content
-      c_likes
-      c_views
-      createdAt
+  mutation($id: String!, $title: String!, $content: String!, $author: String!) {
+    updatePost(id: $id, title: $title, content: $content, author: $author) {
+      result
     }
   }
 `;

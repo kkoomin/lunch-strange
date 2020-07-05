@@ -8,13 +8,13 @@ const getters = { isLoggedIn: (state) => !!state.token };
 const mutations = { setToken: (state, token) => (state.token = token) };
 const actions = {
   logout: ({ commit }) => {
+    const token = cookies.get("k_token");
+
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;
-    const redirect_uri = process.env.VUE_APP_SERVER_URL + "auth/logout";
+    const redirect_uri = `${process.env.VUE_APP_SERVER_URL}auth/logout?token=${token}`;
+
     const fullUrl = `https://kauth.kakao.com/oauth/logout?client_id=${kakao_app_key}&logout_redirect_uri=${redirect_uri}`;
     location.href = fullUrl;
-
-    cookies.remove("k_token");
-    commit("setToken", null);
   },
   login: () => {
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;

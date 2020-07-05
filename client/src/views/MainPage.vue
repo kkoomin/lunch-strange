@@ -67,6 +67,7 @@ import Support from "../components/Support.vue";
 import { mapActions } from "vuex";
 import cookies from "vue-cookies";
 import router from "@/router";
+import qs from "qs";
 
 export default {
   name: "MainPage",
@@ -75,6 +76,7 @@ export default {
     ...mapActions(["setCoordsState", "finalizeLogin", "getUserInfo"]),
   },
   async created() {
+    // geolocation API로 현위치 잡기
     let options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -93,11 +95,20 @@ export default {
       error,
       options
     );
-    if (window.location.hash !== "") {
+
+    // 로그인 처리 이후 리다이렉트 됐을 경우
+    if (qs.parse(location.hash.replace("#", "")).token) {
       this.finalizeLogin();
       const token = cookies.get("k_token");
       this.getUserInfo(token);
       router.push("/");
+    }
+
+    // 로그아웃 처리 이후 리다이렉트 됐을 경우
+    if (qs.parse(location.hash.replace("#", "")).state === "logout") {
+      cookies.remove("k_token");
+      commit("setToken", null);
+      alert9("👋🏻 로그아웃되었습니다!");
     }
   },
 };

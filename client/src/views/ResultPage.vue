@@ -63,7 +63,7 @@ export default {
   },
   data() {
     return {
-      renderNumber: 5,
+      renderNumber: 6,
       renderedPlaces(num) {
         return this.allPlaces().slice(0, num);
       },

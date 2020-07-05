@@ -15,9 +15,6 @@ const actions = {
 
     const fullUrl = `https://kauth.kakao.com/oauth/logout?client_id=${kakao_app_key}&logout_redirect_uri=${redirect_uri}`;
     location.href = fullUrl;
-
-    // cookies.remove("k_token");
-    // commit("setToken", null);
   },
   login: () => {
     const kakao_app_key = process.env.VUE_APP_KAKAO_API_KEY;

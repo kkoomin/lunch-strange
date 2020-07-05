@@ -1,5 +1,5 @@
 .main-page_img {
-  width: 80%;
+  // width: 80%;
   height: 30rem;
   margin: 3rem auto;
   border-top-left-radius: 150px;
@@ -40,6 +40,10 @@
       margin-top: 3rem;
       div {
         margin: 0 2rem;
+      }
+      @media only screen and (max-width: 1000px) {
+        display: flex;
+        flex-direction: column;
       }
     }
 

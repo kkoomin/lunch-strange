@@ -42,7 +42,7 @@
     "graphql-depth-limit": "^1.1.0",
     "graphql-import": "^1.0.2",
     "graphql-import-node": "0.0.4",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.9.20",
     "ncp": "^2.0.0"
   }
